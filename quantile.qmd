@@ -94,7 +94,7 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 
 
 
-## 2 案例背景
+## 2 案例: 数据
 
 - 数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）
 
@@ -104,89 +104,114 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 
 ![](img/data.png){.absolute top="400" left="30" width="700" height="300"}
 
-## 3 分位数回归模型的估计
+## 2 案例: 研究目标
+
+- 建立分位数回归模型，研究个人医疗支出的条件分布与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系。
+
+- 比较分位数回归估计结果与普通最小二乘估计结果。
+
+- 比较医疗支出高低不同的组别，个人年龄、患有慢性病的个人、是否购买补充医疗保险、性别、人种对医疗支出影响效应的差异。
 
 
-## 4 分位数回归模型的诊断
+## 3 分位数回归模型的估计：模型设定
 
-## 5 分位数回归模型的可视化
+
+$$
+\begin{aligned}
+& Q_q\left(totexp_i \mid age_i, totchr_i, suppins_i, female_i, white_i\right) \\
+= & \beta_{q0}+\beta_{q1}age_i+\beta_{q2}otchr_i+\beta_{q3}suppins_i+\beta_{q4}female_i+\beta_{q5}white_i
+\end{aligned}
+$$
+
+## 3 分位数回归模型的估计：Equation Estimation对话框
+
+![](img/fig15_2.png){fig-align="center"}
+
+## 3 分位数回归模型的估计：估计结果
+
+![](img/fig15_3.png){fig-align="center"}
+
+## 3 分位数回归模型的估计：与OLS对比
+
+![](img/table15_2.png){fig-align="center"}
+
+## 4 分位数回归模型的诊断: 斜率是否相等检验操作步骤
+
+![](img/fig15_9.png){fig-align="center"}
+
+## 4 分位数回归模型的诊断: 斜率是否相等检验结果解释
+![](img/fig15_10.png){fig-align="center"}
+
+## 4 分位数回归模型的诊断: 对称性检验操作步骤
+![](img/fig15_11.png){fig-align="center"}
+
+
+## 4 分位数回归模型的诊断: 对称性检验结果解释
+
+![](img/fig15_12.png){fig-align="center"}
+
+
+## 5 分位数回归模型的可视化：过程系数
+
+![](img/fig15_4.png){fig-align="4center"}
+## 5 分位数回归模型的可视化：过程系数操作步骤
+
+![](img/fig15_4.png){fig-align="4center"}
+
+## 5 分位数回归模型的可视化：过程系数表格输出
+
+![](img/fig15_5.png){fig-align="4center"}
+
+## 5 分位数回归模型的可视化：过程系数操作步骤
+
+![](img/fig15_6.png){fig-align="4center"}
+
+## 5 分位数回归模型的可视化：age过程系数图像
+
+![](img/fig15_7.png){fig-align="4center"}
+
+## 5 分位数回归模型的可视化：totchr过程系数图像
+
+![](img/fig15_8.png){fig-align="4center"}
+
 
 ## 6 分位数回归模型的EViews代码
 
-## 7 EViews使用经验分享
+- equation eq1.qreg totexp c age totchr suppins female white
 
-2.1 cty均值的检验
+- equation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white
 
-2.2 hwy均值的检验
+- equation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white
 
-2.3 四驱和前驱城市油耗比较
+- eq1_25th.qrprocess(n=20, graph) @coefs c(2)
 
-2.4 四驱和前驱高速油耗比较
+- equation eq1.qreg totexp c age totchr suppins female white
 
-2.5 自动档和手动挡城市油耗比较
+- eq1.qrslope
 
-2.5 自动档和手动挡高速油耗比较
+- eq1.qrsymn
 
-# 加载包和调用数据
+- eq1.qrslope
 
-```{r}
-#| echo: true
-#| message: false
-library(tidyverse)
-library(ggstatsplot)
-data(mpg)
+## 7 EViews软件优势
 
-```
+- 操作形式灵活：图形界面窗口操作/命令行操作
 
-## 2.1 cty均值的检验
+- 经济计量分析工具的集成
 
-```{r}
-#| echo: TRUE
-#| fig-width: 15
-#| fig-height: 8
-gghistostats(mpg, cty, 
-             test.value = 16,
-             bin.args = list(color = "black",
-                             fill = "cyan")) +
-  theme_classic(base_size = 15)
-```
+- 插件丰富，如表格化输出
 
-## 2.1 cty均值的检验
+- 易学易用、不易遗忘
 
-$H_0: \mu \leq 16$
-
-$H_1: \mu > 16$
-
-拒绝原假设$H_0: \mu \leq 16$ 。
-
-在城市, 油耗均值大于16英里/加仑。
-
-
-
-## 6 研究结论
-
--   四驱、前驱、后驱：45%，45%， 10%
-
--   驱动类型和传动类型相互独立。
-
--   驱动类型和气缸数量不独立。
-
-    -   4缸，72%前驱，28%四驱
-
-    -   6缸，54%前驱， 41%四驱，5%后驱
-
-    -   8缸，1%前驱， 69%四驱，30%后驱
-
-# 7 经验分享
-
--   类别的定义：自动挡和手动挡
-
--   各个类别的样本容量
-
--   提炼结论
 
 ## 
 
 ::: {style="text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px;white-space: nowrap;"}
 Thanks for your attention！
+
+
+![](img/bili_up.jpg)
+
+https://space.bilibili.com/590872906
+
 :::

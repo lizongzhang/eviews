@@ -105,73 +105,129 @@
     "text": "1 分位数回归模型：适用场景\n\n容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。\n若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。"
   },
   {
-    "objectID": "quantile.html#案例背景",
-    "href": "quantile.html#案例背景",
+    "objectID": "quantile.html#案例-数据",
+    "href": "quantile.html#案例-数据",
     "title": "EViews 分位数回归模型",
-    "section": "2 案例背景",
-    "text": "2 案例背景\n\n数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）\n样本数据：从MEPS数据库中提取了2955个人的数据\n\n本例数据文件health.wf1下载"
+    "section": "2 案例: 数据",
+    "text": "2 案例: 数据\n\n数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）\n样本数据：从MEPS数据库中提取了2955个人的数据\n\n本例数据文件health.wf1下载"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的估计",
-    "href": "quantile.html#分位数回归模型的估计",
+    "objectID": "quantile.html#案例-研究目标",
+    "href": "quantile.html#案例-研究目标",
     "title": "EViews 分位数回归模型",
-    "section": "3 分位数回归模型的估计",
-    "text": "3 分位数回归模型的估计"
+    "section": "2 案例: 研究目标",
+    "text": "2 案例: 研究目标\n\n建立分位数回归模型，研究个人医疗支出的条件分布与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系。\n比较分位数回归估计结果与普通最小二乘估计结果。\n比较医疗支出高低不同的组别，个人年龄、患有慢性病的个人、是否购买补充医疗保险、性别、人种对医疗支出影响效应的差异。"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的诊断",
-    "href": "quantile.html#分位数回归模型的诊断",
+    "objectID": "quantile.html#分位数回归模型的估计模型设定",
+    "href": "quantile.html#分位数回归模型的估计模型设定",
     "title": "EViews 分位数回归模型",
-    "section": "4 分位数回归模型的诊断",
-    "text": "4 分位数回归模型的诊断"
+    "section": "3 分位数回归模型的估计：模型设定",
+    "text": "3 分位数回归模型的估计：模型设定\n\\[\n\\begin{aligned}\n& Q_q\\left(totexp_i \\mid age_i, totchr_i, suppins_i, female_i, white_i\\right) \\\\\n= & \\beta_{q0}+\\beta_{q1}age_i+\\beta_{q2}otchr_i+\\beta_{q3}suppins_i+\\beta_{q4}female_i+\\beta_{q5}white_i\n\\end{aligned}\n\\]"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化",
-    "href": "quantile.html#分位数回归模型的可视化",
+    "objectID": "quantile.html#分位数回归模型的估计equation-estimation对话框",
+    "href": "quantile.html#分位数回归模型的估计equation-estimation对话框",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化",
-    "text": "5 分位数回归模型的可视化"
+    "section": "3 分位数回归模型的估计：Equation Estimation对话框",
+    "text": "3 分位数回归模型的估计：Equation Estimation对话框"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的估计估计结果",
+    "href": "quantile.html#分位数回归模型的估计估计结果",
+    "title": "EViews 分位数回归模型",
+    "section": "3 分位数回归模型的估计：估计结果",
+    "text": "3 分位数回归模型的估计：估计结果"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的估计与ols对比",
+    "href": "quantile.html#分位数回归模型的估计与ols对比",
+    "title": "EViews 分位数回归模型",
+    "section": "3 分位数回归模型的估计：与OLS对比",
+    "text": "3 分位数回归模型的估计：与OLS对比"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的诊断-斜率是否相等检验操作步骤",
+    "href": "quantile.html#分位数回归模型的诊断-斜率是否相等检验操作步骤",
+    "title": "EViews 分位数回归模型",
+    "section": "4 分位数回归模型的诊断: 斜率是否相等检验操作步骤",
+    "text": "4 分位数回归模型的诊断: 斜率是否相等检验操作步骤"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的诊断-斜率是否相等检验结果解释",
+    "href": "quantile.html#分位数回归模型的诊断-斜率是否相等检验结果解释",
+    "title": "EViews 分位数回归模型",
+    "section": "4 分位数回归模型的诊断: 斜率是否相等检验结果解释",
+    "text": "4 分位数回归模型的诊断: 斜率是否相等检验结果解释"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的诊断-对称性检验操作步骤",
+    "href": "quantile.html#分位数回归模型的诊断-对称性检验操作步骤",
+    "title": "EViews 分位数回归模型",
+    "section": "4 分位数回归模型的诊断: 对称性检验操作步骤",
+    "text": "4 分位数回归模型的诊断: 对称性检验操作步骤"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的诊断-对称性检验结果解释",
+    "href": "quantile.html#分位数回归模型的诊断-对称性检验结果解释",
+    "title": "EViews 分位数回归模型",
+    "section": "4 分位数回归模型的诊断: 对称性检验结果解释",
+    "text": "4 分位数回归模型的诊断: 对称性检验结果解释"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化过程系数",
+    "href": "quantile.html#分位数回归模型的可视化过程系数",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：过程系数",
+    "text": "5 分位数回归模型的可视化：过程系数\n ## 5 分位数回归模型的可视化：过程系数操作步骤"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化过程系数表格输出",
+    "href": "quantile.html#分位数回归模型的可视化过程系数表格输出",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：过程系数表格输出",
+    "text": "5 分位数回归模型的可视化：过程系数表格输出"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：过程系数操作步骤",
+    "text": "5 分位数回归模型的可视化：过程系数操作步骤"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化age过程系数图像",
+    "href": "quantile.html#分位数回归模型的可视化age过程系数图像",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：age过程系数图像",
+    "text": "5 分位数回归模型的可视化：age过程系数图像"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化totchr过程系数图像",
+    "href": "quantile.html#分位数回归模型的可视化totchr过程系数图像",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：totchr过程系数图像",
+    "text": "5 分位数回归模型的可视化：totchr过程系数图像"
   },
   {
     "objectID": "quantile.html#分位数回归模型的eviews代码",
     "href": "quantile.html#分位数回归模型的eviews代码",
     "title": "EViews 分位数回归模型",
     "section": "6 分位数回归模型的EViews代码",
-    "text": "6 分位数回归模型的EViews代码"
+    "text": "6 分位数回归模型的EViews代码\n\nequation eq1.qreg totexp c age totchr suppins female white\nequation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white\nequation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white\neq1_25th.qrprocess(n=20, graph) @coefs c(2)\nequation eq1.qreg totexp c age totchr suppins female white\neq1.qrslope\neq1.qrsymn\neq1.qrslope"
   },
   {
-    "objectID": "quantile.html#eviews使用经验分享",
-    "href": "quantile.html#eviews使用经验分享",
+    "objectID": "quantile.html#eviews软件优势",
+    "href": "quantile.html#eviews软件优势",
     "title": "EViews 分位数回归模型",
-    "section": "7 EViews使用经验分享",
-    "text": "7 EViews使用经验分享\n2.1 cty均值的检验\n2.2 hwy均值的检验\n2.3 四驱和前驱城市油耗比较\n2.4 四驱和前驱高速油耗比较\n2.5 自动档和手动挡城市油耗比较\n2.5 自动档和手动挡高速油耗比较"
-  },
-  {
-    "objectID": "quantile.html#cty均值的检验",
-    "href": "quantile.html#cty均值的检验",
-    "title": "EViews 分位数回归模型",
-    "section": "2.1 cty均值的检验",
-    "text": "2.1 cty均值的检验\n\ngghistostats(mpg, cty, \n             test.value = 16,\n             bin.args = list(color = \"black\",\n                             fill = \"cyan\")) +\n  theme_classic(base_size = 15)"
-  },
-  {
-    "objectID": "quantile.html#cty均值的检验-1",
-    "href": "quantile.html#cty均值的检验-1",
-    "title": "EViews 分位数回归模型",
-    "section": "2.1 cty均值的检验",
-    "text": "2.1 cty均值的检验\n\\(H_0: \\mu \\leq 16\\)\n\\(H_1: \\mu &gt; 16\\)\n拒绝原假设\\(H_0: \\mu \\leq 16\\) 。\n在城市, 油耗均值大于16英里/加仑。"
-  },
-  {
-    "objectID": "quantile.html#研究结论",
-    "href": "quantile.html#研究结论",
-    "title": "EViews 分位数回归模型",
-    "section": "6 研究结论",
-    "text": "6 研究结论\n\n四驱、前驱、后驱：45%，45%， 10%\n驱动类型和传动类型相互独立。\n驱动类型和气缸数量不独立。\n\n4缸，72%前驱，28%四驱\n6缸，54%前驱， 41%四驱，5%后驱\n8缸，1%前驱， 69%四驱，30%后驱"
+    "section": "7 EViews软件优势",
+    "text": "7 EViews软件优势\n\n操作形式灵活：图形界面窗口操作/命令行操作\n经济计量分析工具的集成\n插件丰富，如表格化输出\n易学易用、不易遗忘"
   },
   {
     "objectID": "quantile.html#section",
     "href": "quantile.html#section",
     "title": "EViews 分位数回归模型",
     "section": "",
-    "text": "Thanks for your attention！\n\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
+    "text": "Thanks for your attention！\n\nhttps://space.bilibili.com/590872906\n\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
   }
 ]

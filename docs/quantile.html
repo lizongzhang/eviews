@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Li Zongzhang">
-  <meta name="dcterms.date" content="2024-06-27">
+  <meta name="dcterms.date" content="2024-06-28">
   <title>EViews实战与数据分析 - EViews 分位数回归模型</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,71 +30,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="styles.css">
@@ -407,7 +342,7 @@
 </div>
 </div>
 
-  <p class="date">2024-06-27</p>
+  <p class="date">2024-06-28</p>
 </section>
 <section id="大纲" class="slide level2">
 <h2>大纲</h2>
@@ -475,8 +410,8 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <li><p>若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。</p></li>
 </ul>
 </section>
-<section id="案例背景" class="slide level2">
-<h2>2 案例背景</h2>
+<section id="案例-数据" class="slide level2">
+<h2>2 案例: 数据</h2>
 <ul>
 <li><p>数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）</p></li>
 <li><p>样本数据：从MEPS数据库中提取了2955个人的数据</p></li>
@@ -484,80 +419,104 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <p><img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678">本例数据文件health.wf1下载</a></p>
 <p><img data-src="img/data.png" class="absolute" style="top: 400px; left: 30px; width: 700px; height: 300px; "></p>
 </section>
-<section id="分位数回归模型的估计" class="slide level2">
-<h2>3 分位数回归模型的估计</h2>
+<section id="案例-研究目标" class="slide level2">
+<h2>2 案例: 研究目标</h2>
+<ul>
+<li><p>建立分位数回归模型，研究个人医疗支出的条件分布与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系。</p></li>
+<li><p>比较分位数回归估计结果与普通最小二乘估计结果。</p></li>
+<li><p>比较医疗支出高低不同的组别，个人年龄、患有慢性病的个人、是否购买补充医疗保险、性别、人种对医疗支出影响效应的差异。</p></li>
+</ul>
 </section>
-<section id="分位数回归模型的诊断" class="slide level2">
-<h2>4 分位数回归模型的诊断</h2>
+<section id="分位数回归模型的估计模型设定" class="slide level2">
+<h2>3 分位数回归模型的估计：模型设定</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q_q\left(totexp_i \mid age_i, totchr_i, suppins_i, female_i, white_i\right) \\
+= &amp; \beta_{q0}+\beta_{q1}age_i+\beta_{q2}otchr_i+\beta_{q3}suppins_i+\beta_{q4}female_i+\beta_{q5}white_i
+\end{aligned}
+\]</span></p>
 </section>
-<section id="分位数回归模型的可视化" class="slide level2">
-<h2>5 分位数回归模型的可视化</h2>
+<section id="分位数回归模型的估计equation-estimation对话框" class="slide level2">
+<h2>3 分位数回归模型的估计：Equation Estimation对话框</h2>
+
+<img data-src="img/fig15_2.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的估计估计结果" class="slide level2">
+<h2>3 分位数回归模型的估计：估计结果</h2>
+
+<img data-src="img/fig15_3.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的估计与ols对比" class="slide level2">
+<h2>3 分位数回归模型的估计：与OLS对比</h2>
+
+<img data-src="img/table15_2.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的诊断-斜率是否相等检验操作步骤" class="slide level2">
+<h2>4 分位数回归模型的诊断: 斜率是否相等检验操作步骤</h2>
+
+<img data-src="img/fig15_9.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的诊断-斜率是否相等检验结果解释" class="slide level2">
+<h2>4 分位数回归模型的诊断: 斜率是否相等检验结果解释</h2>
+
+<img data-src="img/fig15_10.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的诊断-对称性检验操作步骤" class="slide level2">
+<h2>4 分位数回归模型的诊断: 对称性检验操作步骤</h2>
+
+<img data-src="img/fig15_11.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的诊断-对称性检验结果解释" class="slide level2">
+<h2>4 分位数回归模型的诊断: 对称性检验结果解释</h2>
+
+<img data-src="img/fig15_12.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的可视化过程系数" class="slide level2">
+<h2>5 分位数回归模型的可视化：过程系数</h2>
+<p><img data-src="img/fig15_4.png" class="quarto-figure quarto-figure-4center"> ## 5 分位数回归模型的可视化：过程系数操作步骤</p>
+<div class="quarto-figure quarto-figure-4center">
+<figure>
+<p><img data-src="img/fig15_4.png" class="quarto-figure quarto-figure-4center"></p>
+</figure>
+</div>
 </section>
+<section id="分位数回归模型的可视化过程系数表格输出" class="slide level2">
+<h2>5 分位数回归模型的可视化：过程系数表格输出</h2>
+
+<img data-src="img/fig15_5.png" class="quarto-figure quarto-figure-4center r-stretch"></section>
+<section id="分位数回归模型的可视化过程系数操作步骤" class="slide level2">
+<h2>5 分位数回归模型的可视化：过程系数操作步骤</h2>
+
+<img data-src="img/fig15_6.png" class="quarto-figure quarto-figure-4center r-stretch"></section>
+<section id="分位数回归模型的可视化age过程系数图像" class="slide level2">
+<h2>5 分位数回归模型的可视化：age过程系数图像</h2>
+
+<img data-src="img/fig15_7.png" class="quarto-figure quarto-figure-4center r-stretch"></section>
+<section id="分位数回归模型的可视化totchr过程系数图像" class="slide level2">
+<h2>5 分位数回归模型的可视化：totchr过程系数图像</h2>
+
+<img data-src="img/fig15_8.png" class="quarto-figure quarto-figure-4center r-stretch"></section>
 <section id="分位数回归模型的eviews代码" class="slide level2">
 <h2>6 分位数回归模型的EViews代码</h2>
-</section>
-<section id="eviews使用经验分享" class="slide level2">
-<h2>7 EViews使用经验分享</h2>
-<p>2.1 cty均值的检验</p>
-<p>2.2 hwy均值的检验</p>
-<p>2.3 四驱和前驱城市油耗比较</p>
-<p>2.4 四驱和前驱高速油耗比较</p>
-<p>2.5 自动档和手动挡城市油耗比较</p>
-<p>2.5 自动档和手动挡高速油耗比较</p>
-</section>
-<section>
-<section id="加载包和调用数据" class="title-slide slide level1 center">
-<h1>加载包和调用数据</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb1-3"><a></a><span class="fu">data</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="cty均值的检验" class="slide level2">
-<h2>2.1 cty均值的检验</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">gghistostats</span>(mpg, cty, </span>
-<span id="cb2-2"><a></a>             <span class="at">test.value =</span> <span class="dv">16</span>,</span>
-<span id="cb2-3"><a></a>             <span class="at">bin.args =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-4"><a></a>                             <span class="at">fill =</span> <span class="st">"cyan"</span>)) <span class="sc">+</span></span>
-<span id="cb2-5"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-2-1.png" width="1440" class="r-stretch"></section>
-<section id="cty均值的检验-1" class="slide level2">
-<h2>2.1 cty均值的检验</h2>
-<p><span class="math inline">\(H_0: \mu \leq 16\)</span></p>
-<p><span class="math inline">\(H_1: \mu &gt; 16\)</span></p>
-<p>拒绝原假设<span class="math inline">\(H_0: \mu \leq 16\)</span> 。</p>
-<p>在城市, 油耗均值大于16英里/加仑。</p>
-</section>
-<section id="研究结论" class="slide level2">
-<h2>6 研究结论</h2>
 <ul>
-<li><p>四驱、前驱、后驱：45%，45%， 10%</p></li>
-<li><p>驱动类型和传动类型相互独立。</p></li>
-<li><p>驱动类型和气缸数量不独立。</p>
-<ul>
-<li><p>4缸，72%前驱，28%四驱</p></li>
-<li><p>6缸，54%前驱， 41%四驱，5%后驱</p></li>
-<li><p>8缸，1%前驱， 69%四驱，30%后驱</p></li>
-</ul></li>
+<li><p>equation eq1.qreg totexp c age totchr suppins female white</p></li>
+<li><p>equation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white</p></li>
+<li><p>equation eq1_25th.qreg(quant=0.25) totexp c age totchr suppins female white</p></li>
+<li><p>eq1_25th.qrprocess(n=20, graph) <span class="citation" data-cites="coefs">@coefs</span> c(2)</p></li>
+<li><p>equation eq1.qreg totexp c age totchr suppins female white</p></li>
+<li><p>eq1.qrslope</p></li>
+<li><p>eq1.qrsymn</p></li>
+<li><p>eq1.qrslope</p></li>
 </ul>
-</section></section>
-<section>
-<section id="经验分享" class="title-slide slide level1 center">
-<h1>7 经验分享</h1>
+</section>
+<section id="eviews软件优势" class="slide level2">
+<h2>7 EViews软件优势</h2>
 <ul>
-<li><p>类别的定义：自动挡和手动挡</p></li>
-<li><p>各个类别的样本容量</p></li>
-<li><p>提炼结论</p></li>
+<li><p>操作形式灵活：图形界面窗口操作/命令行操作</p></li>
+<li><p>经济计量分析工具的集成</p></li>
+<li><p>插件丰富，如表格化输出</p></li>
+<li><p>易学易用、不易遗忘</p></li>
 </ul>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
 <div style="text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px;white-space: nowrap;">
 <p>Thanks for your attention！</p>
+<p><img data-src="img/bili_up.jpg"></p>
+<p>https://space.bilibili.com/590872906</p>
 </div>
 
 <div class="quarto-auto-generated-content">
@@ -566,7 +525,7 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <p><a href="https://lizongzhang.github.io/eviews" class="uri">https://lizongzhang.github.io/eviews</a></p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -779,44 +738,6 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -23,7 +23,7 @@ format:
 
 1 分位数回归模型简介
 
-2 案例背景
+2 案例
 
 3 分位数回归模型的估计
 
@@ -33,7 +33,7 @@ format:
 
 6 分位数回归的EViews代码
 
-7 EViews使用经验分享
+7 EViews软件优势
 
 ## 1 分位数回归模型：模型设定
 
@@ -119,11 +119,12 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 $$
 \begin{aligned}
 & Q_q\left(totexp_i \mid age_i, totchr_i, suppins_i, female_i, white_i\right) \\
-= & \beta_{q0}+\beta_{q1}age_i+\beta_{q2}otchr_i+\beta_{q3}suppins_i+\beta_{q4}female_i+\beta_{q5}white_i
+&=  \beta_{q0}+\beta_{q1}age_i+\beta_{q2}otchr_i+\beta_{q3}suppins_i \\
+& \space \space \space + \beta_{q4}female_i+\beta_{q5}white_i
 \end{aligned}
 $$
 
-## 3 分位数回归模型的估计：Equation Estimation对话框
+## 3 分位数回归模型的估计：Equation Estimation
 
 ![](img/fig15_2.png){fig-align="center"}
 
@@ -200,7 +201,7 @@ $$
 
 - 经济计量分析工具的集成
 
-- 插件丰富，如表格化输出
+- 丰富的插件
 
 - 易学易用、不易遗忘
 
@@ -211,8 +212,9 @@ $$
 Thanks for your attention！
 
 
-![](img/bili_up.jpg)
+<a href="https://space.bilibili.com/590872906">
+  <img src="img/bili_up.jpg" alt="bili_up" style="display: inline-block; width: 150px;">
+</a>
 
-https://space.bilibili.com/590872906
 
 :::

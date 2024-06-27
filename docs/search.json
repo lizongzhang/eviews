@@ -60,7 +60,7 @@
     "href": "quantile.html#大纲",
     "title": "EViews 分位数回归模型",
     "section": "大纲",
-    "text": "大纲\n1 分位数回归模型简介\n2 案例背景\n3 分位数回归模型的估计\n4 分位数回归模型的诊断\n5 分位数回归模型的可视化\n6 分位数回归的EViews代码\n7 EViews使用经验分享"
+    "text": "大纲\n1 分位数回归模型简介\n2 案例\n3 分位数回归模型的估计\n4 分位数回归模型的诊断\n5 分位数回归模型的可视化\n6 分位数回归的EViews代码\n7 EViews软件优势"
   },
   {
     "objectID": "quantile.html#分位数回归模型模型设定",
@@ -123,14 +123,14 @@
     "href": "quantile.html#分位数回归模型的估计模型设定",
     "title": "EViews 分位数回归模型",
     "section": "3 分位数回归模型的估计：模型设定",
-    "text": "3 分位数回归模型的估计：模型设定\n\\[\n\\begin{aligned}\n& Q_q\\left(totexp_i \\mid age_i, totchr_i, suppins_i, female_i, white_i\\right) \\\\\n= & \\beta_{q0}+\\beta_{q1}age_i+\\beta_{q2}otchr_i+\\beta_{q3}suppins_i+\\beta_{q4}female_i+\\beta_{q5}white_i\n\\end{aligned}\n\\]"
+    "text": "3 分位数回归模型的估计：模型设定\n\\[\n\\begin{aligned}\n& Q_q\\left(totexp_i \\mid age_i, totchr_i, suppins_i, female_i, white_i\\right) \\\\\n&=  \\beta_{q0}+\\beta_{q1}age_i+\\beta_{q2}otchr_i+\\beta_{q3}suppins_i \\\\\n& \\space \\space \\space + \\beta_{q4}female_i+\\beta_{q5}white_i\n\\end{aligned}\n\\]"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的估计equation-estimation对话框",
-    "href": "quantile.html#分位数回归模型的估计equation-estimation对话框",
+    "objectID": "quantile.html#分位数回归模型的估计equation-estimation",
+    "href": "quantile.html#分位数回归模型的估计equation-estimation",
     "title": "EViews 分位数回归模型",
-    "section": "3 分位数回归模型的估计：Equation Estimation对话框",
-    "text": "3 分位数回归模型的估计：Equation Estimation对话框"
+    "section": "3 分位数回归模型的估计：Equation Estimation",
+    "text": "3 分位数回归模型的估计：Equation Estimation"
   },
   {
     "objectID": "quantile.html#分位数回归模型的估计估计结果",
@@ -182,6 +182,13 @@
     "text": "5 分位数回归模型的可视化：过程系数"
   },
   {
+    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化：过程系数操作步骤",
+    "text": "5 分位数回归模型的可视化：过程系数操作步骤"
+  },
+  {
     "objectID": "quantile.html#分位数回归模型的可视化过程系数表格输出",
     "href": "quantile.html#分位数回归模型的可视化过程系数表格输出",
     "title": "EViews 分位数回归模型",
@@ -189,8 +196,8 @@
     "text": "5 分位数回归模型的可视化：过程系数表格输出"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
-    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤-1",
+    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤-1",
     "title": "EViews 分位数回归模型",
     "section": "5 分位数回归模型的可视化：过程系数操作步骤",
     "text": "5 分位数回归模型的可视化：过程系数操作步骤"
@@ -221,20 +228,13 @@
     "href": "quantile.html#eviews软件优势",
     "title": "EViews 分位数回归模型",
     "section": "7 EViews软件优势",
-    "text": "7 EViews软件优势\n\n操作形式灵活：图形界面窗口操作/命令行操作\n经济计量分析工具的集成\n插件丰富，如表格化输出\n易学易用、不易遗忘"
+    "text": "7 EViews软件优势\n\n操作形式灵活：图形界面窗口操作/命令行操作\n经济计量分析工具的集成\n丰富的插件\n易学易用、不易遗忘"
   },
   {
     "objectID": "quantile.html#section",
     "href": "quantile.html#section",
     "title": "EViews 分位数回归模型",
     "section": "",
-    "text": "Thanks for your attention！\n\nhttps://space.bilibili.com/590872906\n\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
-  },
-  {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤-1",
-    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤-1",
-    "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：过程系数操作步骤",
-    "text": "5 分位数回归模型的可视化：过程系数操作步骤"
+    "text": "Thanks for your attention！\n  \n\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
   }
 ]

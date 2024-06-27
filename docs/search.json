@@ -347,7 +347,7 @@
     "href": "quantile.html#研究结论",
     "title": "EViews 分位数回归模型",
     "section": "6 研究结论",
-    "text": "6 研究结论\n\n油耗(单位：miles per gallon 英里每加仑), 数值越大代表越省油\n城市均值 &gt; 16, 高速均值 &gt; 22\n城市：四驱(14) &lt; 前驱(20)\n高速：四驱(20) &lt; 前驱(29)\n城市：自动挡(16) &lt; 手动挡(19)\n高速：四驱(22) &lt; 前驱(26 )"
+    "text": "6 研究结论\n\n四驱、前驱、后驱：45%，45%， 10%\n驱动类型和传动类型相互独立。\n驱动类型和气缸数量不独立。\n\n4缸，72%前驱，28%四驱\n6缸，54%前驱， 41%四驱，5%后驱\n8缸，1%前驱， 69%四驱，30%后驱"
   },
   {
     "objectID": "quantile.html#研究结论-1",
@@ -368,6 +368,139 @@
     "href": "quantile.html#section",
     "title": "EViews 分位数回归模型",
     "section": "",
-    "text": "Thanks for your attention！\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
+    "text": "Thanks for your attention！\n\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
+  },
+  {
+    "objectID": "quantile.html#大纲",
+    "href": "quantile.html#大纲",
+    "title": "EViews 分位数回归模型",
+    "section": "大纲",
+    "text": "大纲\n1 分位数回归模型简介\n2 案例背景\n3 分位数回归模型的估计\n4 分位数回归模型的诊断\n5 分位数回归模型的可视化\n6 分位数回归的EViews代码\n7 EViews使用经验分享"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介模型设定",
+    "href": "quantile.html#分位数回归模型简介模型设定",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介——模型设定",
+    "text": "1 分位数回归模型简介——模型设定\n\n解释变量对被解释变量的某个分位数的影响效应.\n\n\\[\nQ_q\\left(y_i \\mid x_i\\right)=x_i^{\\prime} \\beta_q\n\\]"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介估计思想",
+    "href": "quantile.html#分位数回归模型简介估计思想",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介：估计思想",
+    "text": "1 分位数回归模型简介：估计思想\n\n最小化\n\n\\[\nQ\\left(\\beta_q\\right)=\\sum_{i: y_i \\geq x_i^{\\prime} \\beta}^n q\\left|y_i-x_i^{\\prime} \\beta_q\\right|+\\sum_{i: y_i&lt;x_i^{\\prime} \\beta}^n(1-q)\\left|y_i-x_i^{\\prime} \\beta_q\\right|\n\\]\n\n0&lt;q&lt;1\n当q取不同的值时，估计出相应的\\(β_q\\)。\n利用线性规划求解出令\\(Q\\left(\\beta_q\\right)\\)取到最小值的\\(β_q\\)"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介估计思想-1",
+    "href": "quantile.html#分位数回归模型简介估计思想-1",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介——估计思想",
+    "text": "1 分位数回归模型简介——估计思想\n当q等于0.5时：\n\\[\nQ\\left(\\beta_{0.5}\\right)=\\sum_i^n\\left|y_i-x_i^{\\prime} \\beta_{0.5}\\right|\n\\]\n\n实际上就是所有观测点的残差的绝对值之和，因此当q等于0.5的分位数回归也称作中位数回归，其估计方法称作最小绝对离差（Least Absolute-Deviation, 简称LAD）法。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介系数含义",
+    "href": "quantile.html#分位数回归模型简介系数含义",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介——系数含义",
+    "text": "1 分位数回归模型简介——系数含义\n\\[\n\\frac{\\partial Q_q(y \\mid x)}{\\partial x_j}=\\beta_{q j}\n\\]\n\\(β_qj\\)的含义是：当其他变量保持不变，x_j变化一单位，被解释变量的第\\(q*100\\)个百分位数将变化\\(β_qj\\)单位。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介优势",
+    "href": "quantile.html#分位数回归模型简介优势",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介——优势",
+    "text": "1 分位数回归模型简介——优势\n第一，克服了最小二乘回归模型中潜在的异方差问题\n第二，不会受到样本中异常值的影响，得到稳健的估计结果\n第三，能够更加细致地描述变量之间的关系。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型简介适用场景",
+    "href": "quantile.html#分位数回归模型简介适用场景",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型简介——适用场景",
+    "text": "1 分位数回归模型简介——适用场景\n分位数模型适合于样本容量很大的数据，因为在大样本的情形下，才适宜探究被解释变量的条件分布与解释变量的关系特征。\n若样本容量太小，给定的解释变量，被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型模型设定",
+    "href": "quantile.html#分位数回归模型模型设定",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：模型设定",
+    "text": "1 分位数回归模型：模型设定\n\n解释变量对被解释变量的某个分位数的影响效应.\n\n\\[\nQ_q\\left(y_i \\mid x_i\\right)=x_i^{\\prime} \\beta_q\n\\]"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型估计思想",
+    "href": "quantile.html#分位数回归模型估计思想",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：估计思想",
+    "text": "1 分位数回归模型：估计思想\n\n最小化\n\n\\[\nQ\\left(\\beta_q\\right)=\\sum_{i: y_i \\geq x_i^{\\prime} \\beta}^n q\\left|y_i-x_i^{\\prime} \\beta_q\\right|+\\sum_{i: y_i&lt;x_i^{\\prime} \\beta}^n(1-q)\\left|y_i-x_i^{\\prime} \\beta_q\\right|\n\\]\n\n0&lt;q&lt;1\n当q取不同的值时，估计出相应的\\(β_q\\)。\n利用线性规划求解出令\\(Q\\left(\\beta_q\\right)\\)取到最小值的\\(β_q\\)"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型估计思想-1",
+    "href": "quantile.html#分位数回归模型估计思想-1",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：估计思想",
+    "text": "1 分位数回归模型：估计思想\n当q等于0.5时：\n\\[\nQ\\left(\\beta_{0.5}\\right)=\\sum_i^n\\left|y_i-x_i^{\\prime} \\beta_{0.5}\\right|\n\\]\n\n实际上就是所有观测点的残差的绝对值之和。\nq等于0.5的分位数回归也称作中位数回归，其估计方法称作最小绝对离差法（Least Absolute-Deviation, 简称LAD）。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型系数含义",
+    "href": "quantile.html#分位数回归模型系数含义",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：系数含义",
+    "text": "1 分位数回归模型：系数含义\n\\[\n\\frac{\\partial Q_q(y \\mid x)}{\\partial x_j}=\\beta_{q j}\n\\]\n\\(β_{qj}\\)的含义是：当其他变量保持不变，\\(x_j\\)变化一单位，被解释变量的第\\(100*q\\)个百分位数将变化\\(β_{qj}\\)单位。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型优势",
+    "href": "quantile.html#分位数回归模型优势",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：优势",
+    "text": "1 分位数回归模型：优势\n\n克服了最小二乘回归模型中潜在的异方差问题\n不受样本中异常值的影响，得到稳健的估计结果\n能够更加细致地描述变量之间的关系。"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型适用场景",
+    "href": "quantile.html#分位数回归模型适用场景",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：适用场景",
+    "text": "1 分位数回归模型：适用场景\n\n容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。\n若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。"
+  },
+  {
+    "objectID": "quantile.html#案例背景",
+    "href": "quantile.html#案例背景",
+    "title": "EViews 分位数回归模型",
+    "section": "2 案例背景",
+    "text": "2 案例背景\n\n数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）\n样本数据：MEPS数据库中提取了2955个人的数据，研究个人医疗支出与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系 。\n\n\n本例数据文件health.wf1下载"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的估计",
+    "href": "quantile.html#分位数回归模型的估计",
+    "title": "EViews 分位数回归模型",
+    "section": "3 分位数回归模型的估计",
+    "text": "3 分位数回归模型的估计"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的诊断",
+    "href": "quantile.html#分位数回归模型的诊断",
+    "title": "EViews 分位数回归模型",
+    "section": "4 分位数回归模型的诊断",
+    "text": "4 分位数回归模型的诊断"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的可视化",
+    "href": "quantile.html#分位数回归模型的可视化",
+    "title": "EViews 分位数回归模型",
+    "section": "5 分位数回归模型的可视化",
+    "text": "5 分位数回归模型的可视化"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型的eviews代码",
+    "href": "quantile.html#分位数回归模型的eviews代码",
+    "title": "EViews 分位数回归模型",
+    "section": "6 分位数回归模型的EViews代码",
+    "text": "6 分位数回归模型的EViews代码"
+  },
+  {
+    "objectID": "quantile.html#eviews使用经验分享",
+    "href": "quantile.html#eviews使用经验分享",
+    "title": "EViews 分位数回归模型",
+    "section": "7 EViews使用经验分享",
+    "text": "7 EViews使用经验分享\n2.1 cty均值的检验\n2.2 hwy均值的检验\n2.3 四驱和前驱城市油耗比较\n2.4 四驱和前驱高速油耗比较\n2.5 自动档和手动挡城市油耗比较\n2.5 自动档和手动挡高速油耗比较"
   }
 ]

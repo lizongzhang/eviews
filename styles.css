@@ -1,0 +1,24 @@
+.reveal {
+    color: #044875; /* Change #044875 to the color you want */
+    font-family: "STKaiti", 'Times New Roman', sans-serif; /* Change 'Arial' to the font you want */
+}
+
+/* 'Arial', sans-serif; */
+
+.reveal h2 {
+    color: #044875; /* Change #044875 to the color you want */
+    font-family: "STKaiti", 'Times New Roman', sans-serif;
+}
+
+/* Target the <h1> element specifically on the first slide */
+.reveal .slides > section:first-child h1 {
+    color: #044875; /* Change to your desired color */
+}
+
+
+
+
+
+
+
+

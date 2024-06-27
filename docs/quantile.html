@@ -408,25 +408,95 @@
 
   <p class="date">2024-06-27</p>
 </section>
-<section id="数据和变量" class="slide level2">
-<h2>1 数据和变量</h2>
-<p>数据来源：mpg {ggplot2}</p>
-<p>样本容量：234</p>
-<p>cty: city miles per gallon</p>
-<p>hwy: highway miles per gallon</p>
+<section id="大纲" class="slide level2">
+<h2>大纲</h2>
+<p>1 分位数回归模型简介</p>
+<p>2 案例背景</p>
+<p>3 分位数回归模型的估计</p>
+<p>4 分位数回归模型的诊断</p>
+<p>5 分位数回归模型的可视化</p>
+<p>6 分位数回归的EViews代码</p>
+<p>7 EViews使用经验分享</p>
+</section>
+<section id="分位数回归模型模型设定" class="slide level2">
+<h2>1 分位数回归模型：模型设定</h2>
 <ul>
-<li>英里每加仑，数值越大，代表越省油。</li>
+<li>解释变量对被解释变量的某个分位数的影响效应.</li>
 </ul>
-<p>trans: type of transmission</p>
-<p>drv: the type of drive train,</p>
+<p><span class="math display">\[
+Q_q\left(y_i \mid x_i\right)=x_i^{\prime} \beta_q
+\]</span></p>
+</section>
+<section id="分位数回归模型估计思想" class="slide level2">
+<h2>1 分位数回归模型：估计思想</h2>
 <ul>
-<li><p>f = front-wheel drive,</p></li>
-<li><p>r = rear wheel drive,</p></li>
-<li><p>4 = 4wd</p></li>
+<li>最小化</li>
+</ul>
+<p><span class="math display">\[
+Q\left(\beta_q\right)=\sum_{i: y_i \geq x_i^{\prime} \beta}^n q\left|y_i-x_i^{\prime} \beta_q\right|+\sum_{i: y_i&lt;x_i^{\prime} \beta}^n(1-q)\left|y_i-x_i^{\prime} \beta_q\right|
+\]</span></p>
+<ul>
+<li><p>0&lt;q&lt;1</p></li>
+<li><p>当q取不同的值时，估计出相应的<span class="math inline">\(β_q\)</span>。</p></li>
+<li><p>利用线性规划求解出令<span class="math inline">\(Q\left(\beta_q\right)\)</span>取到最小值的<span class="math inline">\(β_q\)</span></p></li>
 </ul>
 </section>
-<section id="油耗性能分析" class="slide level2">
-<h2>2 油耗性能分析</h2>
+<section id="分位数回归模型估计思想-1" class="slide level2">
+<h2>1 分位数回归模型：估计思想</h2>
+<p>当q等于0.5时：</p>
+<p><span class="math display">\[
+Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
+\]</span></p>
+<ul>
+<li><p>实际上就是所有观测点的残差的绝对值之和。</p></li>
+<li><p>q等于0.5的分位数回归也称作中位数回归，其估计方法称作最小绝对离差法（Least Absolute-Deviation, 简称LAD）。</p></li>
+</ul>
+</section>
+<section id="分位数回归模型系数含义" class="slide level2">
+<h2>1 分位数回归模型：系数含义</h2>
+<p><span class="math display">\[
+\frac{\partial Q_q(y \mid x)}{\partial x_j}=\beta_{q j}
+\]</span></p>
+<p><span class="math inline">\(β_{qj}\)</span>的含义是：当其他变量保持不变，<span class="math inline">\(x_j\)</span>变化一单位，被解释变量的第<span class="math inline">\(100*q\)</span>个百分位数将变化<span class="math inline">\(β_{qj}\)</span>单位。</p>
+</section>
+<section id="分位数回归模型优势" class="slide level2">
+<h2>1 分位数回归模型：优势</h2>
+<ul>
+<li><p>克服了最小二乘回归模型中潜在的异方差问题</p></li>
+<li><p>不受样本中异常值的影响，得到稳健的估计结果</p></li>
+<li><p>能够更加细致地描述变量之间的关系。</p></li>
+</ul>
+</section>
+<section id="分位数回归模型适用场景" class="slide level2">
+<h2>1 分位数回归模型：适用场景</h2>
+<ul>
+<li><p>容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。</p></li>
+<li><p>若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。</p></li>
+</ul>
+</section>
+<section id="案例背景" class="slide level2">
+<h2>2 案例背景</h2>
+<ul>
+<li><p>数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）</p></li>
+<li><p>样本数据：MEPS数据库中提取了2955个人的数据，研究个人医疗支出与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系 。</p></li>
+</ul>
+<p><img data-src="img/data.png"></p>
+<p><img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678">本例数据文件health.wf1下载</a></p>
+</section>
+<section id="分位数回归模型的估计" class="slide level2">
+<h2>3 分位数回归模型的估计</h2>
+</section>
+<section id="分位数回归模型的诊断" class="slide level2">
+<h2>4 分位数回归模型的诊断</h2>
+</section>
+<section id="分位数回归模型的可视化" class="slide level2">
+<h2>5 分位数回归模型的可视化</h2>
+</section>
+<section id="分位数回归模型的eviews代码" class="slide level2">
+<h2>6 分位数回归模型的EViews代码</h2>
+</section>
+<section id="eviews使用经验分享" class="slide level2">
+<h2>7 EViews使用经验分享</h2>
 <p>2.1 cty均值的检验</p>
 <p>2.2 hwy均值的检验</p>
 <p>2.3 四驱和前驱城市油耗比较</p>
@@ -461,201 +531,7 @@
 <p>拒绝原假设<span class="math inline">\(H_0: \mu \leq 16\)</span> 。</p>
 <p>在城市, 油耗均值大于16英里/加仑。</p>
 </section>
-<section id="hwy均值的检验" class="slide level2">
-<h2>2.2 hwy均值的检验</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">gghistostats</span>(mpg, hwy, </span>
-<span id="cb3-2"><a></a>             <span class="at">test.value =</span> <span class="dv">22</span>,</span>
-<span id="cb3-3"><a></a>             <span class="at">bin.args =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"grey"</span>,</span>
-<span id="cb3-4"><a></a>                             <span class="at">fill =</span> <span class="st">"purple"</span>),</span>
-<span id="cb3-5"><a></a>             <span class="at">centrality.line.args =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"red"</span>, </span>
-<span id="cb3-6"><a></a>                                         <span class="at">linewidth =</span> <span class="dv">1</span>, </span>
-<span id="cb3-7"><a></a>                                         <span class="at">linetype =</span> <span class="st">"dashed"</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="hwy均值的检验-1" class="slide level2">
-<h2>2.2 hwy均值的检验</h2>
-<p><span class="math inline">\(H_0: \mu \leq 22\)</span></p>
-<p><span class="math inline">\(H_1: \mu &gt; 22\)</span></p>
-<p>拒绝原假设<span class="math inline">\(H_0: \mu \leq 22\)</span> 。</p>
-<p>在高速, 油耗均值大于22英里/加仑。</p>
-</section>
-<section id="四驱和前驱城市道路油耗比较" class="slide level2">
-<h2>2.3 四驱和前驱城市道路油耗比较</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">filter</span>(drv <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"f"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">ggbetweenstats</span>(drv, </span>
-<span id="cb4-4"><a></a>                 cty,</span>
-<span id="cb4-5"><a></a>                 <span class="at">p.adjust.method =</span> <span class="st">"none"</span>,</span>
-<span id="cb4-6"><a></a>                 <span class="at">xlab =</span> <span class="st">"drive"</span>,</span>
-<span id="cb4-7"><a></a>                 <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb4-8"><a></a>                 <span class="at">palette =</span> <span class="st">"Set1"</span>,</span>
-<span id="cb4-9"><a></a>                 <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>)</span>
-<span id="cb4-10"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-11"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="四驱和前驱城市道路油耗比较-1" class="slide level2">
-<h2>2.3 四驱和前驱城市道路油耗比较</h2>
-<p><span class="math inline">\(H_0: \mu_4 \geq \mu_f\)</span></p>
-<p><span class="math inline">\(H_1: \mu_4 &lt; \mu_f\)</span></p>
-<p>在城市, <span class="math inline">\(\mu_4 &lt; \mu_f\)</span>, 前驱(20)比四驱(14)省油。</p>
-</section>
-<section id="四驱和前驱高速油耗比较" class="slide level2">
-<h2>2.4 四驱和前驱高速油耗比较</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">filter</span>(drv <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"f"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">ggbetweenstats</span>(drv, </span>
-<span id="cb5-4"><a></a>                 hwy,</span>
-<span id="cb5-5"><a></a>                 <span class="at">p.adjust.method =</span> <span class="st">"none"</span>,</span>
-<span id="cb5-6"><a></a>                 <span class="at">xlab =</span> <span class="st">"drive"</span>,</span>
-<span id="cb5-7"><a></a>                 <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb5-8"><a></a>                 <span class="at">palette =</span> <span class="st">"Set1"</span>,</span>
-<span id="cb5-9"><a></a>                 <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>)</span>
-<span id="cb5-10"><a></a>                 ) <span class="sc">+</span></span>
-<span id="cb5-11"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="四驱和前驱高速油耗比较-1" class="slide level2">
-<h2>2.4 四驱和前驱高速油耗比较</h2>
-<p><span class="math inline">\(H_0: \mu_4 \geq \mu_f\)</span></p>
-<p><span class="math inline">\(H_1: \mu_4 &lt; \mu_f\)</span></p>
-<p>拒绝原假设<span class="math inline">\(H_0: \mu_4 \geq \mu_f\)</span>。</p>
-<p>在高速, <span class="math inline">\(\mu_4 &lt; \mu_f\)</span>, 前驱(28)比四驱(24)省油。</p>
-</section>
-<section id="自动档和手动挡城市道路油耗比较" class="slide level2">
-<h2>2.5 自动档和手动挡城市道路油耗比较</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a></a>  <span class="fu">mutate</span>(<span class="at">transmission =</span> <span class="fu">if_else</span>(<span class="fu">substr</span>(trans, <span class="dv">1</span>, <span class="dv">4</span>) <span class="sc">==</span> <span class="st">"auto"</span>, </span>
-<span id="cb6-3"><a></a>                                <span class="st">"automatic"</span>, </span>
-<span id="cb6-4"><a></a>                                <span class="st">"manual"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a></a>  <span class="fu">ggbetweenstats</span>(transmission, </span>
-<span id="cb6-6"><a></a>                 cty,</span>
-<span id="cb6-7"><a></a>                 <span class="at">p.adjust.method =</span> <span class="st">"none"</span>,</span>
-<span id="cb6-8"><a></a>                 <span class="at">xlab =</span> <span class="st">"drive"</span>,</span>
-<span id="cb6-9"><a></a>                 <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb6-10"><a></a>                 <span class="at">palette =</span> <span class="st">"Set1"</span>,</span>
-<span id="cb6-11"><a></a>                 <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>)</span>
-<span id="cb6-12"><a></a>                 ) <span class="sc">+</span></span>
-<span id="cb6-13"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="自动档和手动挡城市道路油耗比较-1" class="slide level2">
-<h2>2.5 自动档和手动挡城市道路油耗比较</h2>
-<p><span class="math inline">\(H_0: \mu_{auto} \geq \mu_{manual}\)</span></p>
-<p><span class="math inline">\(H_1: \mu_{auto} &lt; \mu_{manual}\)</span></p>
-<p>拒绝原假设<span class="math inline">\(H_0: \mu_4 \geq \mu_f\)</span>。</p>
-<p>在城市, <span class="math inline">\(\mu_{auto} &lt; \mu_{manual}\)</span> , 手动挡(19)比自动挡(16)省油。</p>
-</section>
-<section id="自动档和手动挡高速油耗比较" class="slide level2">
-<h2>2.6 自动档和手动挡高速油耗比较</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">mutate</span>(<span class="at">transmission =</span> <span class="fu">if_else</span>(<span class="fu">substr</span>(trans, <span class="dv">1</span>, <span class="dv">4</span>) <span class="sc">==</span> <span class="st">"auto"</span>, </span>
-<span id="cb7-3"><a></a>                                <span class="st">"automatic"</span>, </span>
-<span id="cb7-4"><a></a>                                <span class="st">"manual"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a></a>  <span class="fu">ggbetweenstats</span>(transmission, </span>
-<span id="cb7-6"><a></a>                 hwy,</span>
-<span id="cb7-7"><a></a>                 <span class="at">p.adjust.method =</span> <span class="st">"none"</span>,</span>
-<span id="cb7-8"><a></a>                 <span class="at">xlab =</span> <span class="st">"drive"</span>,</span>
-<span id="cb7-9"><a></a>                 <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb7-10"><a></a>                 <span class="at">palette =</span> <span class="st">"Set1"</span>,</span>
-<span id="cb7-11"><a></a>                 <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>)</span>
-<span id="cb7-12"><a></a>                 ) <span class="sc">+</span></span>
-<span id="cb7-13"><a></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
-<section id="自动档和手动挡高速油耗比较-1" class="slide level2">
-<h2>2.6 自动档和手动挡高速油耗比较</h2>
-<p><span class="math inline">\(H_0: \mu_{auto} \geq \mu_{manual}\)</span></p>
-<p><span class="math inline">\(H_1: \mu_{auto} &lt; \mu_{manual}\)</span></p>
-<p>拒绝原假设<span class="math inline">\(H_0: \mu_4 \geq \mu_f\)</span>。</p>
-<p>在高速, <span class="math inline">\(\mu_{auto} &lt; \mu_{manual}\)</span> , 手动挡(26)比自动挡(22)省油。</p>
-</section>
-<section id="驱动类型分布" class="slide level2">
-<h2>3 驱动类型分布</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#计算三种驱动的百分比</span></span>
-<span id="cb8-2"><a></a><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(<span class="fu">table</span>(mpg<span class="sc">$</span>drv)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- 4  f  r 
-44 45 11 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggpiestats</span>(mpg,</span>
-<span id="cb10-2"><a></a>           drv,</span>
-<span id="cb10-3"><a></a>           <span class="at">ratio =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.45</span>, <span class="fl">0.1</span>),</span>
-<span id="cb10-4"><a></a>           <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb10-5"><a></a>           <span class="at">palette =</span> <span class="st">"Set2"</span>)<span class="sc">+</span></span>
-<span id="cb10-6"><a></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p>四驱、前驱、后驱：45%，45%， 10%</p>
-</section>
-<section id="驱动类型和传动类型的关系分析" class="slide level2">
-<h2>4 驱动类型和传动类型的关系分析</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a></a>  <span class="fu">mutate</span>(<span class="at">transmission =</span> <span class="fu">if_else</span>(<span class="fu">substr</span>(trans, <span class="dv">1</span>, <span class="dv">4</span>) <span class="sc">==</span> <span class="st">"auto"</span>, </span>
-<span id="cb11-3"><a></a>                                <span class="st">"automatic"</span>, </span>
-<span id="cb11-4"><a></a>                                <span class="st">"manual"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-5"><a></a>  <span class="fu">ggbarstats</span>(drv,</span>
-<span id="cb11-6"><a></a>             transmission,</span>
-<span id="cb11-7"><a></a>             <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb11-8"><a></a>             <span class="at">palette =</span> <span class="st">"Paired"</span>)<span class="sc">+</span></span>
-<span id="cb11-9"><a></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p>驱动类型和传动类型相互独立。</p>
-</section>
-<section id="驱动类型和气缸数量的关系分析" class="slide level2">
-<h2>5 驱动类型和气缸数量的关系分析</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggbarstats</span>(mpg,</span>
-<span id="cb12-2"><a></a>           drv,</span>
-<span id="cb12-3"><a></a>           cyl,</span>
-<span id="cb12-4"><a></a>           <span class="at">package =</span> <span class="st">"RColorBrewer"</span>,</span>
-<span id="cb12-5"><a></a>           <span class="at">palette =</span> <span class="st">"Paired"</span>)<span class="sc">+</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="quantile_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="驱动类型和气缸数量的关系分析-1" class="slide level2">
-<h2>5 驱动类型和气缸数量的关系分析</h2>
-<p>驱动类型和气缸数量不独立。</p>
-<p>4缸，72%前驱，28%四驱;</p>
-<p>6缸，54%前驱， 41%四驱，5%后驱;</p>
-<p>8缸，1%前驱， 69%四驱，30%后驱。</p>
-</section>
 <section id="研究结论" class="slide level2">
-<h2>6 研究结论</h2>
-<ul>
-<li><p>油耗(单位：miles per gallon 英里每加仑), 数值越大代表越省油</p></li>
-<li><p>城市均值 &gt; 16, 高速均值 &gt; 22</p></li>
-<li><p>城市：四驱(14) &lt; 前驱(20)</p></li>
-<li><p>高速：四驱(20) &lt; 前驱(29)</p></li>
-<li><p>城市：自动挡(16) &lt; 手动挡(19)</p></li>
-<li><p>高速：四驱(22) &lt; 前驱(26 )</p></li>
-</ul>
-</section>
-<section id="研究结论-1" class="slide level2">
-<h2>6 研究结论</h2>
-<ul>
-<li><p>高速比城市道路省油</p></li>
-<li><p>前驱比四驱省油，高速(9)比城市(6)的差距更大。</p></li>
-<li><p>手动挡比自动档省油，高速(4)比城市(3)的差距更大。</p></li>
-</ul>
-</section>
-<section id="研究结论-2" class="slide level2">
 <h2>6 研究结论</h2>
 <ul>
 <li><p>四驱、前驱、后驱：45%，45%， 10%</p></li>
@@ -684,6 +560,7 @@
 </div>
 
 <div class="quarto-auto-generated-content">
+<p><img src="img/bili_up.jpg" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://lizongzhang.github.io/eviews" class="uri">https://lizongzhang.github.io/eviews</a></p>
 </div>

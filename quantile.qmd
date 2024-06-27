@@ -15,33 +15,105 @@ format:
     footer: <https://lizongzhang.github.io/eviews>
     include-before-body: header.html
     code-block-height: 100px
+    logo: img/bili_up.jpg
 ---
 
 
+## 大纲
 
-## 1 数据和变量
+1 分位数回归模型简介
 
-数据来源：mpg {ggplot2}
+2 案例背景
 
-样本容量：234
+3 分位数回归模型的估计
 
-cty: city miles per gallon
+4 分位数回归模型的诊断
 
-hwy: highway miles per gallon
+5 分位数回归模型的可视化
 
--   英里每加仑，数值越大，代表越省油。
+6 分位数回归的EViews代码
 
-trans: type of transmission
+7 EViews使用经验分享
 
-drv: the type of drive train,
+## 1 分位数回归模型：模型设定
 
--   f = front-wheel drive,
+- 解释变量对被解释变量的某个分位数的影响效应.
 
--   r = rear wheel drive,
+$$
+Q_q\left(y_i \mid x_i\right)=x_i^{\prime} \beta_q
+$$
 
--   4 = 4wd
+## 1 分位数回归模型：估计思想
 
-## 2 油耗性能分析
+- 最小化 
+
+$$
+Q\left(\beta_q\right)=\sum_{i: y_i \geq x_i^{\prime} \beta}^n q\left|y_i-x_i^{\prime} \beta_q\right|+\sum_{i: y_i<x_i^{\prime} \beta}^n(1-q)\left|y_i-x_i^{\prime} \beta_q\right|
+$$ 
+
+- 0\<q\<1
+
+- 当q取不同的值时，估计出相应的$β_q$。
+
+- 利用线性规划求解出令$Q\left(\beta_q\right)$取到最小值的$β_q$
+
+## 1 分位数回归模型：估计思想
+
+当q等于0.5时：
+
+$$
+Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
+$$
+
+- 实际上就是所有观测点的残差的绝对值之和。
+
+- q等于0.5的分位数回归也称作中位数回归，其估计方法称作最小绝对离差法（Least Absolute-Deviation, 简称LAD）。
+
+## 1 分位数回归模型：系数含义
+
+$$
+\frac{\partial Q_q(y \mid x)}{\partial x_j}=\beta_{q j}
+$$
+
+$β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被解释变量的第$100*q$个百分位数将变化$β_{qj}$单位。
+
+## 1 分位数回归模型：优势
+
+- 克服了最小二乘回归模型中潜在的异方差问题
+
+- 不受样本中异常值的影响，得到稳健的估计结果
+
+- 能够更加细致地描述变量之间的关系。
+
+## 1 分位数回归模型：适用场景
+
+- 容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。
+
+- 若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。
+
+
+
+
+## 2 案例背景
+
+- 数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）
+
+- 样本数据：MEPS数据库中提取了2955个人的数据，研究个人医疗支出与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系 。
+
+![](img/data.png)
+
+<img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[本例数据文件health.wf1下载](https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678 )
+
+## 3 分位数回归模型的估计
+
+
+## 4 分位数回归模型的诊断
+
+## 5 分位数回归模型的可视化
+
+## 6 分位数回归模型的EViews代码
+
+## 7 EViews使用经验分享
 
 2.1 cty均值的检验
 
@@ -54,7 +126,6 @@ drv: the type of drive train,
 2.5 自动档和手动挡城市油耗比较
 
 2.5 自动档和手动挡高速油耗比较
-
 
 # 加载包和调用数据
 
@@ -80,8 +151,6 @@ gghistostats(mpg, cty,
   theme_classic(base_size = 15)
 ```
 
-
-
 ## 2.1 cty均值的检验
 
 $H_0: \mu \leq 16$
@@ -92,221 +161,7 @@ $H_1: \mu > 16$
 
 在城市, 油耗均值大于16英里/加仑。
 
-## 2.2 hwy均值的检验
 
-```{r}
-#| echo: TRUE
-gghistostats(mpg, hwy, 
-             test.value = 22,
-             bin.args = list(color = "grey",
-                             fill = "purple"),
-             centrality.line.args = list(color = "red", 
-                                         linewidth = 1, 
-                                         linetype = "dashed")) +
-  theme_classic(base_size = 15)
-```
-
-## 2.2 hwy均值的检验
-
-$H_0: \mu \leq 22$
-
-$H_1: \mu > 22$
-
-拒绝原假设$H_0: \mu \leq 22$ 。
-
-在高速, 油耗均值大于22英里/加仑。
-
-## 2.3 四驱和前驱城市道路油耗比较
-
-```{r}
-#| echo: TRUE
-#| warning: false
-mpg %>%
-  filter(drv %in% c("4", "f")) %>%
-  ggbetweenstats(drv, 
-                 cty,
-                 p.adjust.method = "none",
-                 xlab = "drive",
-                 package = "RColorBrewer",
-                 palette = "Set1",
-                 violin.args = list(width = 0)
-  ) +
-  theme_classic(base_size = 15)
-```
-
-## 2.3 四驱和前驱城市道路油耗比较
-
-$H_0: \mu_4 \geq \mu_f$
-
-$H_1: \mu_4 < \mu_f$
-
-在城市, $\mu_4 < \mu_f$, 前驱(20)比四驱(14)省油。
-
-## 2.4 四驱和前驱高速油耗比较
-
-```{r}
-#| echo: TRUE
-#| warning: false
-mpg %>%
-  filter(drv %in% c("4", "f")) %>%
-  ggbetweenstats(drv, 
-                 hwy,
-                 p.adjust.method = "none",
-                 xlab = "drive",
-                 package = "RColorBrewer",
-                 palette = "Set1",
-                 violin.args = list(width = 0)
-                 ) +
-  theme_classic(base_size = 15)
-```
-
-## 2.4 四驱和前驱高速油耗比较
-
-$H_0: \mu_4 \geq \mu_f$
-
-$H_1: \mu_4 < \mu_f$
-
-拒绝原假设$H_0: \mu_4 \geq \mu_f$。
-
-在高速, $\mu_4 < \mu_f$, 前驱(28)比四驱(24)省油。
-
-## 2.5 自动档和手动挡城市道路油耗比较
-
-```{r}
-#| echo: TRUE
-#| warning: false
-mpg %>% 
-  mutate(transmission = if_else(substr(trans, 1, 4) == "auto", 
-                                "automatic", 
-                                "manual")) %>% 
-  ggbetweenstats(transmission, 
-                 cty,
-                 p.adjust.method = "none",
-                 xlab = "drive",
-                 package = "RColorBrewer",
-                 palette = "Set1",
-                 violin.args = list(width = 0)
-                 ) +
-  theme_classic(base_size = 15)
-```
-
-## 2.5 自动档和手动挡城市道路油耗比较
-
-$H_0: \mu_{auto} \geq \mu_{manual}$
-
-$H_1: \mu_{auto} < \mu_{manual}$
-
-拒绝原假设$H_0: \mu_4 \geq \mu_f$。
-
-在城市, $\mu_{auto} < \mu_{manual}$ , 手动挡(19)比自动挡(16)省油。
-
-## 2.6 自动档和手动挡高速油耗比较
-
-```{r}
-#| echo: TRUE
-#| warning: false
-mpg %>% 
-  mutate(transmission = if_else(substr(trans, 1, 4) == "auto", 
-                                "automatic", 
-                                "manual")) %>% 
-  ggbetweenstats(transmission, 
-                 hwy,
-                 p.adjust.method = "none",
-                 xlab = "drive",
-                 package = "RColorBrewer",
-                 palette = "Set1",
-                 violin.args = list(width = 0)
-                 ) +
-  theme_classic(base_size = 15)
-```
-
-## 2.6 自动档和手动挡高速油耗比较
-
-$H_0: \mu_{auto} \geq \mu_{manual}$
-
-$H_1: \mu_{auto} < \mu_{manual}$
-
-拒绝原假设$H_0: \mu_4 \geq \mu_f$。
-
-在高速, $\mu_{auto} < \mu_{manual}$ , 手动挡(26)比自动挡(22)省油。
-
-## 3 驱动类型分布
-
-```{r}
-#| echo: TRUE
-#计算三种驱动的百分比
-round(100*prop.table(table(mpg$drv)))
-
-ggpiestats(mpg,
-           drv,
-           ratio = c(0.45, 0.45, 0.1),
-           package = "RColorBrewer",
-           palette = "Set2")+
-  theme_bw(base_size = 15)
-```
-
-四驱、前驱、后驱：45%，45%， 10%
-
-## 4 驱动类型和传动类型的关系分析
-
-```{r}
-#| echo: TRUE
-mpg %>% 
-  mutate(transmission = if_else(substr(trans, 1, 4) == "auto", 
-                                "automatic", 
-                                "manual")) %>% 
-  ggbarstats(drv,
-             transmission,
-             package = "RColorBrewer",
-             palette = "Paired")+
-  theme_bw(base_size = 15)
-```
-
-驱动类型和传动类型相互独立。
-
-## 5 驱动类型和气缸数量的关系分析
-
-```{r}
-#| echo: TRUE
-ggbarstats(mpg,
-           drv,
-           cyl,
-           package = "RColorBrewer",
-           palette = "Paired")+
-  theme_bw(base_size = 15)
-```
-
-## 5 驱动类型和气缸数量的关系分析
-
-驱动类型和气缸数量不独立。
-
-4缸，72%前驱，28%四驱; 
-
-6缸，54%前驱， 41%四驱，5%后驱; 
-
-8缸，1%前驱， 69%四驱，30%后驱。
-
-## 6 研究结论
-
--   油耗(单位：miles per gallon 英里每加仑), 数值越大代表越省油
-
--   城市均值 \> 16, 高速均值 \> 22
-
--   城市：四驱(14) \< 前驱(20)
-
--   高速：四驱(20) \< 前驱(29)
-
--   城市：自动挡(16) \< 手动挡(19)
-
--   高速：四驱(22) \< 前驱(26 )
-
-## 6 研究结论
-
--   高速比城市道路省油
-
--   前驱比四驱省油，高速(9)比城市(6)的差距更大。
-
--   手动挡比自动档省油，高速(4)比城市(3)的差距更大。
 
 ## 6 研究结论
 

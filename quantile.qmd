@@ -136,6 +136,8 @@ $$
 
 ![](img/table15_2.png){fig-align="center"}
 
+
+
 ## 4 分位数回归模型的诊断: 斜率是否相等检验操作步骤
 
 ![](img/fig15_9.png){fig-align="center"}
@@ -154,27 +156,27 @@ $$
 
 ## 5 分位数回归模型的可视化：过程系数
 
-![](img/fig15_4.png){fig-align="4center"}
+![](img/fig15_4.png){fig-align="center"}
 
 ## 5 分位数回归模型的可视化：过程系数操作步骤
 
-![](img/fig15_4.png){fig-align="4center"}
+![](img/fig15_4.png){fig-align="center"}
 
 ## 5 分位数回归模型的可视化：过程系数表格输出
 
-![](img/fig15_5.png){fig-align="4center"}
+![](img/fig15_5.png){fig-align="center"}
 
 ## 5 分位数回归模型的可视化：过程系数操作步骤
 
-![](img/fig15_6.png){fig-align="4center"}
+![](img/fig15_6.png){fig-align="center"}
 
 ## 5 分位数回归模型的可视化：age过程系数图像
 
-![](img/fig15_7.png){fig-align="4center"}
+![](img/fig15_7.png){fig-align="center"}
 
 ## 5 分位数回归模型的可视化：totchr过程系数图像
 
-![](img/fig15_8.png){fig-align="4center"}
+![](img/fig15_8.png){fig-align="center"}
 
 
 ## 6 分位数回归模型的EViews代码

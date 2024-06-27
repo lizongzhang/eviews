@@ -16,8 +16,358 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About Me",
+    "title": "EViews实战与数据分析",
     "section": "",
-    "text": "Thanks for checking out my web site!"
+    "text": "配套数据下载\n  \n  \n    \n     B站视频合集\n  \n  \n    \n     京东链接\n  \n  \n    \n     作者Email\n  \n  \n    \n     作者B站主页\n  \n\n      \n欢迎访问《EViews实战与数据分析》配套网站！\n\n\n    \n    \n  \n\n\n\nclick here"
+  },
+  {
+    "objectID": "case2pre.html",
+    "href": "case2pre.html",
+    "title": "汽车性能分析",
+    "section": "",
+    "text": "数据来源：mpg {ggplot2}\n样本容量：234\ncty: city miles per gallon\nhwy: highway miles per gallon\n\n英里每加仑，数值越大，代表越省油。\n\ntrans: type of transmission\ndrv: the type of drive train,\n\nf = front-wheel drive,\nr = rear wheel drive,\n4 = 4wd"
+  },
+  {
+    "objectID": "case2pre.html#数据和变量",
+    "href": "case2pre.html#数据和变量",
+    "title": "汽车性能分析",
+    "section": "",
+    "text": "数据来源：mpg {ggplot2}\n样本容量：234\ncty: city miles per gallon\nhwy: highway miles per gallon\n\n英里每加仑，数值越大，代表越省油。\n\ntrans: type of transmission\ndrv: the type of drive train,\n\nf = front-wheel drive,\nr = rear wheel drive,\n4 = 4wd"
+  },
+  {
+    "objectID": "case2pre.html#油耗性能分析",
+    "href": "case2pre.html#油耗性能分析",
+    "title": "汽车性能分析",
+    "section": "2 油耗性能分析",
+    "text": "2 油耗性能分析\n2.1 cty均值的检验\n2.2 hwy均值的检验\n2.3 四驱和前驱城市油耗比较\n2.4 四驱和前驱高速油耗比较\n2.5 自动档和手动挡城市油耗比较\n2.5 自动档和手动挡高速油耗比较"
+  },
+  {
+    "objectID": "case2pre.html#cty均值的检验",
+    "href": "case2pre.html#cty均值的检验",
+    "title": "汽车性能分析",
+    "section": "2.1 cty均值的检验",
+    "text": "2.1 cty均值的检验\n\ngghistostats(mpg, cty, \n             test.value = 16,\n             bin.args = list(color = \"black\",\n                             fill = \"cyan\")) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#cty均值的检验-1",
+    "href": "case2pre.html#cty均值的检验-1",
+    "title": "汽车性能分析",
+    "section": "2.1 cty均值的检验",
+    "text": "2.1 cty均值的检验\n\\(H_0: \\mu \\leq 16\\)\n\\(H_1: \\mu &gt; 16\\)\n拒绝原假设\\(H_0: \\mu \\leq 16\\) 。\n在城市, 油耗均值大于16英里/加仑。"
+  },
+  {
+    "objectID": "case2pre.html#hwy均值的检验",
+    "href": "case2pre.html#hwy均值的检验",
+    "title": "汽车性能分析",
+    "section": "2.2 hwy均值的检验",
+    "text": "2.2 hwy均值的检验\n\ngghistostats(mpg, hwy, \n             test.value = 22,\n             bin.args = list(color = \"grey\",\n                             fill = \"purple\"),\n             centrality.line.args = list(color = \"red\", \n                                         linewidth = 1, \n                                         linetype = \"dashed\")) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#hwy均值的检验-1",
+    "href": "case2pre.html#hwy均值的检验-1",
+    "title": "汽车性能分析",
+    "section": "2.2 hwy均值的检验",
+    "text": "2.2 hwy均值的检验\n\\(H_0: \\mu \\leq 22\\)\n\\(H_1: \\mu &gt; 22\\)\n拒绝原假设\\(H_0: \\mu \\leq 22\\) 。\n在高速, 油耗均值大于22英里/加仑。"
+  },
+  {
+    "objectID": "case2pre.html#四驱和前驱城市道路油耗比较",
+    "href": "case2pre.html#四驱和前驱城市道路油耗比较",
+    "title": "汽车性能分析",
+    "section": "2.3 四驱和前驱城市道路油耗比较",
+    "text": "2.3 四驱和前驱城市道路油耗比较\n\nmpg %&gt;%\n  filter(drv %in% c(\"4\", \"f\")) %&gt;%\n  ggbetweenstats(drv, \n                 cty,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n  ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#四驱和前驱城市道路油耗比较-1",
+    "href": "case2pre.html#四驱和前驱城市道路油耗比较-1",
+    "title": "汽车性能分析",
+    "section": "2.3 四驱和前驱城市道路油耗比较",
+    "text": "2.3 四驱和前驱城市道路油耗比较\n\\(H_0: \\mu_4 \\geq \\mu_f\\)\n\\(H_1: \\mu_4 &lt; \\mu_f\\)\n在城市, \\(\\mu_4 &lt; \\mu_f\\), 前驱(20)比四驱(14)省油。"
+  },
+  {
+    "objectID": "case2pre.html#四驱和前驱高速油耗比较",
+    "href": "case2pre.html#四驱和前驱高速油耗比较",
+    "title": "汽车性能分析",
+    "section": "2.4 四驱和前驱高速油耗比较",
+    "text": "2.4 四驱和前驱高速油耗比较\n\nmpg %&gt;%\n  filter(drv %in% c(\"4\", \"f\")) %&gt;%\n  ggbetweenstats(drv, \n                 hwy,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#四驱和前驱高速油耗比较-1",
+    "href": "case2pre.html#四驱和前驱高速油耗比较-1",
+    "title": "汽车性能分析",
+    "section": "2.4 四驱和前驱高速油耗比较",
+    "text": "2.4 四驱和前驱高速油耗比较\n\\(H_0: \\mu_4 \\geq \\mu_f\\)\n\\(H_1: \\mu_4 &lt; \\mu_f\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在高速, \\(\\mu_4 &lt; \\mu_f\\), 前驱(28)比四驱(24)省油。"
+  },
+  {
+    "objectID": "case2pre.html#自动档和手动挡城市道路油耗比较",
+    "href": "case2pre.html#自动档和手动挡城市道路油耗比较",
+    "title": "汽车性能分析",
+    "section": "2.5 自动档和手动挡城市道路油耗比较",
+    "text": "2.5 自动档和手动挡城市道路油耗比较\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbetweenstats(transmission, \n                 cty,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#自动档和手动挡城市道路油耗比较-1",
+    "href": "case2pre.html#自动档和手动挡城市道路油耗比较-1",
+    "title": "汽车性能分析",
+    "section": "2.5 自动档和手动挡城市道路油耗比较",
+    "text": "2.5 自动档和手动挡城市道路油耗比较\n\\(H_0: \\mu_{auto} \\geq \\mu_{manual}\\)\n\\(H_1: \\mu_{auto} &lt; \\mu_{manual}\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在城市, \\(\\mu_{auto} &lt; \\mu_{manual}\\) , 手动挡(19)比自动挡(16)省油。"
+  },
+  {
+    "objectID": "case2pre.html#自动档和手动挡高速油耗比较",
+    "href": "case2pre.html#自动档和手动挡高速油耗比较",
+    "title": "汽车性能分析",
+    "section": "2.6 自动档和手动挡高速油耗比较",
+    "text": "2.6 自动档和手动挡高速油耗比较\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbetweenstats(transmission, \n                 hwy,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#自动档和手动挡高速油耗比较-1",
+    "href": "case2pre.html#自动档和手动挡高速油耗比较-1",
+    "title": "汽车性能分析",
+    "section": "2.6 自动档和手动挡高速油耗比较",
+    "text": "2.6 自动档和手动挡高速油耗比较\n\\(H_0: \\mu_{auto} \\geq \\mu_{manual}\\)\n\\(H_1: \\mu_{auto} &lt; \\mu_{manual}\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在高速, \\(\\mu_{auto} &lt; \\mu_{manual}\\) , 手动挡(26)比自动挡(22)省油。"
+  },
+  {
+    "objectID": "case2pre.html#驱动类型分布",
+    "href": "case2pre.html#驱动类型分布",
+    "title": "汽车性能分析",
+    "section": "3 驱动类型分布",
+    "text": "3 驱动类型分布\n\n#计算三种驱动的百分比\nround(100*prop.table(table(mpg$drv)))\n\n\n 4  f  r \n44 45 11 \n\nggpiestats(mpg,\n           drv,\n           ratio = c(0.45, 0.45, 0.1),\n           package = \"RColorBrewer\",\n           palette = \"Set2\")+\n  theme_bw(base_size = 15)\n\n\n\n\n\n\n\n\n四驱、前驱、后驱：45%，45%， 10%"
+  },
+  {
+    "objectID": "case2pre.html#驱动类型和传动类型的关系分析",
+    "href": "case2pre.html#驱动类型和传动类型的关系分析",
+    "title": "汽车性能分析",
+    "section": "4 驱动类型和传动类型的关系分析",
+    "text": "4 驱动类型和传动类型的关系分析\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbarstats(drv,\n             transmission,\n             package = \"RColorBrewer\",\n             palette = \"Paired\")+\n  theme_bw(base_size = 15)\n\n\n\n\n\n\n\n\n驱动类型和传动类型相互独立。"
+  },
+  {
+    "objectID": "case2pre.html#驱动类型和气缸数量的关系分析",
+    "href": "case2pre.html#驱动类型和气缸数量的关系分析",
+    "title": "汽车性能分析",
+    "section": "5 驱动类型和气缸数量的关系分析",
+    "text": "5 驱动类型和气缸数量的关系分析\n\nggbarstats(mpg,\n           drv,\n           cyl,\n           package = \"RColorBrewer\",\n           palette = \"Paired\")+\n  theme_bw(base_size = 15)"
+  },
+  {
+    "objectID": "case2pre.html#驱动类型和气缸数量的关系分析-1",
+    "href": "case2pre.html#驱动类型和气缸数量的关系分析-1",
+    "title": "汽车性能分析",
+    "section": "5 驱动类型和气缸数量的关系分析",
+    "text": "5 驱动类型和气缸数量的关系分析\n驱动类型和气缸数量不独立。\n4缸，72%前驱，28%四驱;\n6缸，54%前驱， 41%四驱，5%后驱;\n8缸，1%前驱， 69%四驱，30%后驱。"
+  },
+  {
+    "objectID": "case2pre.html#研究结论",
+    "href": "case2pre.html#研究结论",
+    "title": "汽车性能分析",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n油耗(单位：miles per gallon 英里每加仑), 数值越大代表越省油\n城市均值 &gt; 16, 高速均值 &gt; 22\n城市：四驱(14) &lt; 前驱(20)\n高速：四驱(20) &lt; 前驱(29)\n城市：自动挡(16) &lt; 手动挡(19)\n高速：四驱(22) &lt; 前驱(26 )"
+  },
+  {
+    "objectID": "case2pre.html#研究结论-1",
+    "href": "case2pre.html#研究结论-1",
+    "title": "汽车性能分析",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n高速比城市道路省油\n前驱比四驱省油，高速(9)比城市(6)的差距更大。\n手动挡比自动档省油，高速(4)比城市(3)的差距更大。"
+  },
+  {
+    "objectID": "case2pre.html#研究结论-2",
+    "href": "case2pre.html#研究结论-2",
+    "title": "汽车性能分析",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n四驱、前驱、后驱：45%，45%， 10%\n驱动类型和传动类型相互独立。\n驱动类型和气缸数量不独立。\n\n4缸，72%前驱，28%四驱\n6缸，54%前驱， 41%四驱，5%后驱\n8缸，1%前驱， 69%四驱，30%后驱"
+  },
+  {
+    "objectID": "case2pre.html#section",
+    "href": "case2pre.html#section",
+    "title": "汽车性能分析",
+    "section": "",
+    "text": "Thanks for your attention！"
+  },
+  {
+    "objectID": "第1篇.html",
+    "href": "第1篇.html",
+    "title": "第1篇 EViews概览",
+    "section": "",
+    "text": "第1章 EViews简介\n\n[讲义]\n下载讲义PPT"
+  },
+  {
+    "objectID": "第5篇.html",
+    "href": "第5篇.html",
+    "title": "第5篇 面板数据",
+    "section": "",
+    "text": "第1章 EViews简介\n\n[讲义]\n下载讲义PPT"
+  },
+  {
+    "objectID": "第3篇.html",
+    "href": "第3篇.html",
+    "title": "第3篇 截面数据",
+    "section": "",
+    "text": "第10章 截面数据的图形工具\n\n[讲义]\n下载讲义PPT"
+  },
+  {
+    "objectID": "第2篇.html",
+    "href": "第2篇.html",
+    "title": "第2篇 EViews入门",
+    "section": "",
+    "text": "第1章 EViews简介\n\n[讲义]\n下载讲义PPT"
+  },
+  {
+    "objectID": "第4篇.html",
+    "href": "第4篇.html",
+    "title": "第4篇 时间序列",
+    "section": "",
+    "text": "第20章 时间序列的基础性分析\n\n[讲义]\n下载讲义PPT"
+  },
+  {
+    "objectID": "quantile.html#数据和变量",
+    "href": "quantile.html#数据和变量",
+    "title": "EViews 分位数回归模型",
+    "section": "1 数据和变量",
+    "text": "1 数据和变量\n数据来源：mpg {ggplot2}\n样本容量：234\ncty: city miles per gallon\nhwy: highway miles per gallon\n\n英里每加仑，数值越大，代表越省油。\n\ntrans: type of transmission\ndrv: the type of drive train,\n\nf = front-wheel drive,\nr = rear wheel drive,\n4 = 4wd"
+  },
+  {
+    "objectID": "quantile.html#油耗性能分析",
+    "href": "quantile.html#油耗性能分析",
+    "title": "EViews 分位数回归模型",
+    "section": "2 油耗性能分析",
+    "text": "2 油耗性能分析\n2.1 cty均值的检验\n2.2 hwy均值的检验\n2.3 四驱和前驱城市油耗比较\n2.4 四驱和前驱高速油耗比较\n2.5 自动档和手动挡城市油耗比较\n2.5 自动档和手动挡高速油耗比较"
+  },
+  {
+    "objectID": "quantile.html#cty均值的检验",
+    "href": "quantile.html#cty均值的检验",
+    "title": "EViews 分位数回归模型",
+    "section": "2.1 cty均值的检验",
+    "text": "2.1 cty均值的检验\n\ngghistostats(mpg, cty, \n             test.value = 16,\n             bin.args = list(color = \"black\",\n                             fill = \"cyan\")) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#cty均值的检验-1",
+    "href": "quantile.html#cty均值的检验-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.1 cty均值的检验",
+    "text": "2.1 cty均值的检验\n\\(H_0: \\mu \\leq 16\\)\n\\(H_1: \\mu &gt; 16\\)\n拒绝原假设\\(H_0: \\mu \\leq 16\\) 。\n在城市, 油耗均值大于16英里/加仑。"
+  },
+  {
+    "objectID": "quantile.html#hwy均值的检验",
+    "href": "quantile.html#hwy均值的检验",
+    "title": "EViews 分位数回归模型",
+    "section": "2.2 hwy均值的检验",
+    "text": "2.2 hwy均值的检验\n\ngghistostats(mpg, hwy, \n             test.value = 22,\n             bin.args = list(color = \"grey\",\n                             fill = \"purple\"),\n             centrality.line.args = list(color = \"red\", \n                                         linewidth = 1, \n                                         linetype = \"dashed\")) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#hwy均值的检验-1",
+    "href": "quantile.html#hwy均值的检验-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.2 hwy均值的检验",
+    "text": "2.2 hwy均值的检验\n\\(H_0: \\mu \\leq 22\\)\n\\(H_1: \\mu &gt; 22\\)\n拒绝原假设\\(H_0: \\mu \\leq 22\\) 。\n在高速, 油耗均值大于22英里/加仑。"
+  },
+  {
+    "objectID": "quantile.html#四驱和前驱城市道路油耗比较",
+    "href": "quantile.html#四驱和前驱城市道路油耗比较",
+    "title": "EViews 分位数回归模型",
+    "section": "2.3 四驱和前驱城市道路油耗比较",
+    "text": "2.3 四驱和前驱城市道路油耗比较\n\nmpg %&gt;%\n  filter(drv %in% c(\"4\", \"f\")) %&gt;%\n  ggbetweenstats(drv, \n                 cty,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n  ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#四驱和前驱城市道路油耗比较-1",
+    "href": "quantile.html#四驱和前驱城市道路油耗比较-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.3 四驱和前驱城市道路油耗比较",
+    "text": "2.3 四驱和前驱城市道路油耗比较\n\\(H_0: \\mu_4 \\geq \\mu_f\\)\n\\(H_1: \\mu_4 &lt; \\mu_f\\)\n在城市, \\(\\mu_4 &lt; \\mu_f\\), 前驱(20)比四驱(14)省油。"
+  },
+  {
+    "objectID": "quantile.html#四驱和前驱高速油耗比较",
+    "href": "quantile.html#四驱和前驱高速油耗比较",
+    "title": "EViews 分位数回归模型",
+    "section": "2.4 四驱和前驱高速油耗比较",
+    "text": "2.4 四驱和前驱高速油耗比较\n\nmpg %&gt;%\n  filter(drv %in% c(\"4\", \"f\")) %&gt;%\n  ggbetweenstats(drv, \n                 hwy,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#四驱和前驱高速油耗比较-1",
+    "href": "quantile.html#四驱和前驱高速油耗比较-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.4 四驱和前驱高速油耗比较",
+    "text": "2.4 四驱和前驱高速油耗比较\n\\(H_0: \\mu_4 \\geq \\mu_f\\)\n\\(H_1: \\mu_4 &lt; \\mu_f\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在高速, \\(\\mu_4 &lt; \\mu_f\\), 前驱(28)比四驱(24)省油。"
+  },
+  {
+    "objectID": "quantile.html#自动档和手动挡城市道路油耗比较",
+    "href": "quantile.html#自动档和手动挡城市道路油耗比较",
+    "title": "EViews 分位数回归模型",
+    "section": "2.5 自动档和手动挡城市道路油耗比较",
+    "text": "2.5 自动档和手动挡城市道路油耗比较\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbetweenstats(transmission, \n                 cty,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#自动档和手动挡城市道路油耗比较-1",
+    "href": "quantile.html#自动档和手动挡城市道路油耗比较-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.5 自动档和手动挡城市道路油耗比较",
+    "text": "2.5 自动档和手动挡城市道路油耗比较\n\\(H_0: \\mu_{auto} \\geq \\mu_{manual}\\)\n\\(H_1: \\mu_{auto} &lt; \\mu_{manual}\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在城市, \\(\\mu_{auto} &lt; \\mu_{manual}\\) , 手动挡(19)比自动挡(16)省油。"
+  },
+  {
+    "objectID": "quantile.html#自动档和手动挡高速油耗比较",
+    "href": "quantile.html#自动档和手动挡高速油耗比较",
+    "title": "EViews 分位数回归模型",
+    "section": "2.6 自动档和手动挡高速油耗比较",
+    "text": "2.6 自动档和手动挡高速油耗比较\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbetweenstats(transmission, \n                 hwy,\n                 p.adjust.method = \"none\",\n                 xlab = \"drive\",\n                 package = \"RColorBrewer\",\n                 palette = \"Set1\",\n                 violin.args = list(width = 0)\n                 ) +\n  theme_classic(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#自动档和手动挡高速油耗比较-1",
+    "href": "quantile.html#自动档和手动挡高速油耗比较-1",
+    "title": "EViews 分位数回归模型",
+    "section": "2.6 自动档和手动挡高速油耗比较",
+    "text": "2.6 自动档和手动挡高速油耗比较\n\\(H_0: \\mu_{auto} \\geq \\mu_{manual}\\)\n\\(H_1: \\mu_{auto} &lt; \\mu_{manual}\\)\n拒绝原假设\\(H_0: \\mu_4 \\geq \\mu_f\\)。\n在高速, \\(\\mu_{auto} &lt; \\mu_{manual}\\) , 手动挡(26)比自动挡(22)省油。"
+  },
+  {
+    "objectID": "quantile.html#驱动类型分布",
+    "href": "quantile.html#驱动类型分布",
+    "title": "EViews 分位数回归模型",
+    "section": "3 驱动类型分布",
+    "text": "3 驱动类型分布\n\n#计算三种驱动的百分比\nround(100*prop.table(table(mpg$drv)))\n\n\n 4  f  r \n44 45 11 \n\nggpiestats(mpg,\n           drv,\n           ratio = c(0.45, 0.45, 0.1),\n           package = \"RColorBrewer\",\n           palette = \"Set2\")+\n  theme_bw(base_size = 15)\n\n\n四驱、前驱、后驱：45%，45%， 10%"
+  },
+  {
+    "objectID": "quantile.html#驱动类型和传动类型的关系分析",
+    "href": "quantile.html#驱动类型和传动类型的关系分析",
+    "title": "EViews 分位数回归模型",
+    "section": "4 驱动类型和传动类型的关系分析",
+    "text": "4 驱动类型和传动类型的关系分析\n\nmpg %&gt;% \n  mutate(transmission = if_else(substr(trans, 1, 4) == \"auto\", \n                                \"automatic\", \n                                \"manual\")) %&gt;% \n  ggbarstats(drv,\n             transmission,\n             package = \"RColorBrewer\",\n             palette = \"Paired\")+\n  theme_bw(base_size = 15)\n\n\n驱动类型和传动类型相互独立。"
+  },
+  {
+    "objectID": "quantile.html#驱动类型和气缸数量的关系分析",
+    "href": "quantile.html#驱动类型和气缸数量的关系分析",
+    "title": "EViews 分位数回归模型",
+    "section": "5 驱动类型和气缸数量的关系分析",
+    "text": "5 驱动类型和气缸数量的关系分析\n\nggbarstats(mpg,\n           drv,\n           cyl,\n           package = \"RColorBrewer\",\n           palette = \"Paired\")+\n  theme_bw(base_size = 15)"
+  },
+  {
+    "objectID": "quantile.html#驱动类型和气缸数量的关系分析-1",
+    "href": "quantile.html#驱动类型和气缸数量的关系分析-1",
+    "title": "EViews 分位数回归模型",
+    "section": "5 驱动类型和气缸数量的关系分析",
+    "text": "5 驱动类型和气缸数量的关系分析\n驱动类型和气缸数量不独立。\n4缸，72%前驱，28%四驱;\n6缸，54%前驱， 41%四驱，5%后驱;\n8缸，1%前驱， 69%四驱，30%后驱。"
+  },
+  {
+    "objectID": "quantile.html#研究结论",
+    "href": "quantile.html#研究结论",
+    "title": "EViews 分位数回归模型",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n油耗(单位：miles per gallon 英里每加仑), 数值越大代表越省油\n城市均值 &gt; 16, 高速均值 &gt; 22\n城市：四驱(14) &lt; 前驱(20)\n高速：四驱(20) &lt; 前驱(29)\n城市：自动挡(16) &lt; 手动挡(19)\n高速：四驱(22) &lt; 前驱(26 )"
+  },
+  {
+    "objectID": "quantile.html#研究结论-1",
+    "href": "quantile.html#研究结论-1",
+    "title": "EViews 分位数回归模型",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n高速比城市道路省油\n前驱比四驱省油，高速(9)比城市(6)的差距更大。\n手动挡比自动档省油，高速(4)比城市(3)的差距更大。"
+  },
+  {
+    "objectID": "quantile.html#研究结论-2",
+    "href": "quantile.html#研究结论-2",
+    "title": "EViews 分位数回归模型",
+    "section": "6 研究结论",
+    "text": "6 研究结论\n\n四驱、前驱、后驱：45%，45%， 10%\n驱动类型和传动类型相互独立。\n驱动类型和气缸数量不独立。\n\n4缸，72%前驱，28%四驱\n6缸，54%前驱， 41%四驱，5%后驱\n8缸，1%前驱， 69%四驱，30%后驱"
+  },
+  {
+    "objectID": "quantile.html#section",
+    "href": "quantile.html#section",
+    "title": "EViews 分位数回归模型",
+    "section": "",
+    "text": "Thanks for your attention！\n\n\n\n\nhttps://lizongzhang.github.io/eviews"
   }
 ]

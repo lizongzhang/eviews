@@ -1,0 +1,15 @@
+---
+title: "第3篇 截面数据"
+---
+
+<h1 style="color: #044875;"> 第10章 截面数据的图形工具 </h1>
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义]<to be updated>
+
+<img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[下载讲义PPT]()
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[]()
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[]()
+
+

@@ -3,25 +3,26 @@ project:
   output-dir: docs
   
 website:
-  title: "MY WEB SITE"
+  title: "EViews实战与数据分析"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - projects.qmd
+      - 第1篇.qmd
+      - 第2篇.qmd
+      - 第3篇.qmd
+      - 第4篇.qmd
+      - 第5篇.qmd
     tools:
-      - icon: twitter
-        href: https://twitter.com/
-      - icon: github
-        href: https://github.com/YOURUSERNAME/YOURREPO
+      - icon: envelope
+        href: lizongzhang9@qq.com
   page-footer:
-    right: "Built with [Quarto](https://quarto.org/)"
-    left: "&copy; Copyright 2023, YOUR NAME"
-
+    right: "Data illuminates insights."
+    left: "&copy; Copyright 2024, Li Zongzhang"
 format:
   html:
-    theme: cerulean
+    theme: yeti
+    fontcolor: "#044875"
     toc: true
-
 editor: source
 

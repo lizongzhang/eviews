@@ -11,7 +11,7 @@ format:
     chalkboard: 
       buttons: false
     preview-links: auto
-    css: styles.css
+    css: [styles.css, logo.css]
     footer: <https://lizongzhang.github.io/eviews>
     include-before-body: header.html
     code-block-height: 100px
@@ -98,11 +98,11 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 
 - 数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）
 
-- 样本数据：MEPS数据库中提取了2955个人的数据，研究个人医疗支出与年龄、患有慢性病的个数、是否购买补充医疗保险、性别、人种的关系 。
-
-![](img/data.png)
+- 样本数据：从MEPS数据库中提取了2955个人的数据
 
 <img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[本例数据文件health.wf1下载](https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678 )
+
+![](img/data.png){.absolute top="400" left="30" width="700" height="300"}
 
 ## 3 分位数回归模型的估计
 

@@ -13,7 +13,11 @@
 /* Target the <h1> element specifically on the first slide */
 .reveal .slides > section:first-child h1 {
     color: #044875; /* Change to your desired color */
+    font-family: "STKaiti", 'Times New Roman', sans-serif;
 }
+
+
+
 
 
 

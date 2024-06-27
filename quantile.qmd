@@ -154,6 +154,7 @@ $$
 ## 5 分位数回归模型的可视化：过程系数
 
 ![](img/fig15_4.png){fig-align="4center"}
+
 ## 5 分位数回归模型的可视化：过程系数操作步骤
 
 ![](img/fig15_4.png){fig-align="4center"}

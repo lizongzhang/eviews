@@ -2,7 +2,7 @@
 title: "<span style='font-size: 80px;'>EViews 分位数回归模型</span>"
 subtitle: "<span style='font-size: 80px;'>估计、检验与可视化</span>"
 date: today
-author: "<span style='color: #044875;'>Li Zongzhang</span>"
+author: "<span style='color: #044875;'>李宗璋</span>"
 format: 
   revealjs:
     incremental: FALSE
@@ -39,11 +39,13 @@ format:
 
 ## 1 分位数回归模型：模型设定
 
-- 解释变量对被解释变量的某个分位数的影响效应.
+- 分位数回归将被解释变量的条件分位数表示为解释变量的线性函数。
 
 $$
 Q_q\left(y_i \mid x_i\right)=x_i^{\prime} \beta_q
 $$
+
+
 
 ## 1 分位数回归模型：估计思想
 
@@ -77,7 +79,7 @@ $$
 \frac{\partial Q_q(y \mid x)}{\partial x_j}=\beta_{q j}
 $$
 
-$β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被解释变量的第$100*q$个百分位数将变化$β_{qj}$单位。
+$β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，平均而言，被解释变量的第$100*q$个百分位数将变化$β_{qj}$单位。
 
 ## 1 分位数回归模型：优势
 
@@ -87,11 +89,23 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 
 - 能够更加细致地描述变量之间的关系。
 
+## 1 分位数回归模型：优势
+
+![](img/ols_vs_qr.png){fig-align="center"}
+
+
+## 1 分位数回归模型：优势
+
+![](img/engel_ols_qr.png){fig-align="center"}
+
+
+
+
 ## 1 分位数回归模型：适用场景
 
 - 容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。
 
-- 若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。
+- 若样本容量太小，给定的解释变量和被解释变量的变异程度不够，无法探究其分位数与解释变量的关系。
 
 
 
@@ -100,7 +114,7 @@ $β_{qj}$的含义是：当其他变量保持不变，$x_j$变化一单位，被
 
 - 数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）
 
-- 样本数据：从MEPS数据库中提取了2955个人的数据
+- 样本数据：从MEPS数据库中提取2955个人的数据
 
 <img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[本例数据文件health.wf1下载](https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678 )
 
@@ -135,30 +149,30 @@ $$
 ![](img/fig15_3_note.png){fig-align="center"}
 
 ## 3 分位数回归模型的估计：与OLS对比
-![](img/table15_2a.png){fig-align="center"}
+![](img/table15_2b.png){fig-align="center"}
 
 
 
-## 3 分位数回归模型的估计：与OLS对比
+## 3 分位数回归模型的估计
 
 ![](img/table15_2.png){fig-align="center"}
 
 
 
-## 4 分位数回归模型的诊断: 斜率是否相等检验
+## 4 分位数回归模型的诊断: 斜率相等检验
 
 检验目的：解释变量对被解释变量的条件分布的影响效应是否存在差异？
 
 ![](img/fig15_9_note.png){fig-align="center"}
 
-## 4 分位数回归模型的诊断: 斜率是否相等检验结果解释
+## 4 分位数回归模型的诊断: 斜率相等检验
 ![](img/fig15_10_note.png){fig-align="center"}
 
 ## 4 分位数回归模型的诊断: 对称性检验
 ![](img/fig15_11_note.png){fig-align="center"}
 
 
-## 4 分位数回归模型的诊断: 对称性检验结果解释
+## 4 分位数回归模型的诊断: 对称性检验
 
 ![](img/fig15_12_note.png){fig-align="center"}
 
@@ -167,28 +181,28 @@ $$
 
 ![](img/fig15_4_note.png){fig-align="center"}
 
-## 5 分位数回归模型的可视化：过程系数操作步骤
+## 5 分位数回归模型的可视化：系数表格
 
 ![](img/fig15_4.png){fig-align="center"}
 
-## 5 分位数回归模型的可视化：过程系数表格输出
+## 5 分位数回归模型的可视化：系数表格
 
 ![](img/fig15_5_note.png){fig-align="center"}
 
-## 5 分位数回归模型的可视化：过程系数
+## 5 分位数回归模型的可视化：系数表格
 
 ![](img/fig15_5b.png){fig-align="center"}
 
-## 5 分位数回归模型的可视化：过程系数图像
+## 5 分位数回归模型的可视化：系数图像
 
 ![](img/fig15_6_note.png){fig-align="center"}
 
-## 5 分位数回归模型的可视化：totchr过程系数图像
+## 5 分位数回归模型的可视化：系数图像
 
 ![](img/fig15_7_note.png){fig-align="center"}
 
 
-## 6 分位数回归模型的EViews代码
+## 6 EViews代码：分位数回归方程的估计
 
 - 估计中位数数方程eq1
 - equation eq1.qreg totexp c age totchr suppins female white
@@ -196,11 +210,8 @@ $$
 - 估计第25个百分位数方程eq1
 - equation eq1.qreg(quant=0.25) totexp c age totchr suppins female white
 
-- eq1_25th.qrprocess(n=20, graph) @coefs c(2)
 
-- equation eq1.qreg totexp c age totchr suppins female white
-
-## 6 分位数回归模型的EViews代码
+## 6 EViews代码：分位数回归方程的检验
 
 - 检验eq1方程系数是否相等(检验q25, q50, q75)
 - eq1.qrslope
@@ -215,7 +226,22 @@ $$
 - eq1.qrsymm(n=10)
 
 
-## 7 EViews优势和使用经验
+## 6 EViews代码：分位数回归方程可视化
+
+- 绘制4个分位数方程的所有系数的表格
+- eq1.qrprocess(n=4)
+
+- 绘制10个分位数方程的第2个系数的表格
+- eq1.qrprocess @coefs c(2)
+
+- 绘制4个分位数方程的所有系数的图像
+- eq1.qrprocess(n=4, graph)
+
+- 绘制10个分位数方程的第2个系数、第3个系数的图像
+- eq1.qrprocess(graph) @coefs c(2) c(3)
+
+
+## 7 EViews优势
 
 - 操作灵活：图形窗口操作/命令行操作
 

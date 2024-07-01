@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.551">
 
-  <meta name="author" content="Li Zongzhang">
+  <meta name="author" content="李宗璋">
   <meta name="dcterms.date" content="2024-07-01">
   <title>EViews实战与数据分析 - EViews 分位数回归模型</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -337,7 +337,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-<span style="color: #044875;">Li Zongzhang</span> 
+<span style="color: #044875;">李宗璋</span> 
 </div>
 </div>
 </div>
@@ -357,7 +357,7 @@
 <section id="分位数回归模型模型设定" class="slide level2">
 <h2>1 分位数回归模型：模型设定</h2>
 <ul>
-<li>解释变量对被解释变量的某个分位数的影响效应.</li>
+<li>分位数回归将被解释变量的条件分位数表示为解释变量的线性函数。</li>
 </ul>
 <p><span class="math display">\[
 Q_q\left(y_i \mid x_i\right)=x_i^{\prime} \beta_q
@@ -393,7 +393,7 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <p><span class="math display">\[
 \frac{\partial Q_q(y \mid x)}{\partial x_j}=\beta_{q j}
 \]</span></p>
-<p><span class="math inline">\(β_{qj}\)</span>的含义是：当其他变量保持不变，<span class="math inline">\(x_j\)</span>变化一单位，被解释变量的第<span class="math inline">\(100*q\)</span>个百分位数将变化<span class="math inline">\(β_{qj}\)</span>单位。</p>
+<p><span class="math inline">\(β_{qj}\)</span>的含义是：当其他变量保持不变，<span class="math inline">\(x_j\)</span>变化一单位，平均而言，被解释变量的第<span class="math inline">\(100*q\)</span>个百分位数将变化<span class="math inline">\(β_{qj}\)</span>单位。</p>
 </section>
 <section id="分位数回归模型优势" class="slide level2">
 <h2>1 分位数回归模型：优势</h2>
@@ -403,18 +403,26 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <li><p>能够更加细致地描述变量之间的关系。</p></li>
 </ul>
 </section>
+<section id="分位数回归模型优势-1" class="slide level2">
+<h2>1 分位数回归模型：优势</h2>
+
+<img data-src="img/ols_vs_qr.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型优势-2" class="slide level2">
+<h2>1 分位数回归模型：优势</h2>
+
+<img data-src="img/engel_ols_qr.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="分位数回归模型适用场景" class="slide level2">
 <h2>1 分位数回归模型：适用场景</h2>
 <ul>
 <li><p>容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。</p></li>
-<li><p>若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。</p></li>
+<li><p>若样本容量太小，给定的解释变量和被解释变量的变异程度不够，无法探究其分位数与解释变量的关系。</p></li>
 </ul>
 </section>
 <section id="案例-数据" class="slide level2">
 <h2>2 案例: 数据</h2>
 <ul>
 <li><p>数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）</p></li>
-<li><p>样本数据：从MEPS数据库中提取了2955个人的数据</p></li>
+<li><p>样本数据：从MEPS数据库中提取2955个人的数据</p></li>
 </ul>
 <p><img src="img/download.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://pan.baidu.com/s/1ypLO8PbEeolXNug7spmzhg?pwd=5678">本例数据文件health.wf1下载</a></p>
 <p><img data-src="img/data.png" class="absolute" style="top: 400px; left: 30px; width: 700px; height: 300px; "></p>
@@ -448,65 +456,63 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <section id="分位数回归模型的估计与ols对比" class="slide level2">
 <h2>3 分位数回归模型的估计：与OLS对比</h2>
 
-<img data-src="img/table15_2a.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的估计与ols对比-1" class="slide level2">
-<h2>3 分位数回归模型的估计：与OLS对比</h2>
+<img data-src="img/table15_2b.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="分位数回归模型的估计" class="slide level2">
+<h2>3 分位数回归模型的估计</h2>
 
 <img data-src="img/table15_2.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的诊断-斜率是否相等检验" class="slide level2">
-<h2>4 分位数回归模型的诊断: 斜率是否相等检验</h2>
+<section id="分位数回归模型的诊断-斜率相等检验" class="slide level2">
+<h2>4 分位数回归模型的诊断: 斜率相等检验</h2>
 <p>检验目的：解释变量对被解释变量的条件分布的影响效应是否存在差异？</p>
 
 <img data-src="img/fig15_9_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的诊断-斜率是否相等检验结果解释" class="slide level2">
-<h2>4 分位数回归模型的诊断: 斜率是否相等检验结果解释</h2>
+<section id="分位数回归模型的诊断-斜率相等检验-1" class="slide level2">
+<h2>4 分位数回归模型的诊断: 斜率相等检验</h2>
 
 <img data-src="img/fig15_10_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="分位数回归模型的诊断-对称性检验" class="slide level2">
 <h2>4 分位数回归模型的诊断: 对称性检验</h2>
 
 <img data-src="img/fig15_11_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的诊断-对称性检验结果解释" class="slide level2">
-<h2>4 分位数回归模型的诊断: 对称性检验结果解释</h2>
+<section id="分位数回归模型的诊断-对称性检验-1" class="slide level2">
+<h2>4 分位数回归模型的诊断: 对称性检验</h2>
 
 <img data-src="img/fig15_12_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="分位数回归模型的可视化过程系数" class="slide level2">
 <h2>5 分位数回归模型的可视化：过程系数</h2>
 
 <img data-src="img/fig15_4_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的可视化过程系数操作步骤" class="slide level2">
-<h2>5 分位数回归模型的可视化：过程系数操作步骤</h2>
+<section id="分位数回归模型的可视化系数表格" class="slide level2">
+<h2>5 分位数回归模型的可视化：系数表格</h2>
 
 <img data-src="img/fig15_4.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的可视化过程系数表格输出" class="slide level2">
-<h2>5 分位数回归模型的可视化：过程系数表格输出</h2>
+<section id="分位数回归模型的可视化系数表格-1" class="slide level2">
+<h2>5 分位数回归模型的可视化：系数表格</h2>
 
 <img data-src="img/fig15_5_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的可视化过程系数-1" class="slide level2">
-<h2>5 分位数回归模型的可视化：过程系数</h2>
+<section id="分位数回归模型的可视化系数表格-2" class="slide level2">
+<h2>5 分位数回归模型的可视化：系数表格</h2>
 
 <img data-src="img/fig15_5b.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的可视化过程系数图像" class="slide level2">
-<h2>5 分位数回归模型的可视化：过程系数图像</h2>
+<section id="分位数回归模型的可视化系数图像" class="slide level2">
+<h2>5 分位数回归模型的可视化：系数图像</h2>
 
 <img data-src="img/fig15_6_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的可视化totchr过程系数图像" class="slide level2">
-<h2>5 分位数回归模型的可视化：totchr过程系数图像</h2>
+<section id="分位数回归模型的可视化系数图像-1" class="slide level2">
+<h2>5 分位数回归模型的可视化：系数图像</h2>
 
 <img data-src="img/fig15_7_note.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="分位数回归模型的eviews代码" class="slide level2">
-<h2>6 分位数回归模型的EViews代码</h2>
+<section id="eviews代码分位数回归方程的估计" class="slide level2">
+<h2>6 EViews代码：分位数回归方程的估计</h2>
 <ul>
 <li><p>估计中位数数方程eq1</p></li>
 <li><p>equation eq1.qreg totexp c age totchr suppins female white</p></li>
 <li><p>估计第25个百分位数方程eq1</p></li>
 <li><p>equation eq1.qreg(quant=0.25) totexp c age totchr suppins female white</p></li>
-<li><p>eq1_25th.qrprocess(n=20, graph) <span class="citation" data-cites="coefs">@coefs</span> c(2)</p></li>
-<li><p>equation eq1.qreg totexp c age totchr suppins female white</p></li>
 </ul>
 </section>
-<section id="分位数回归模型的eviews代码-1" class="slide level2">
-<h2>6 分位数回归模型的EViews代码</h2>
+<section id="eviews代码分位数回归方程的检验" class="slide level2">
+<h2>6 EViews代码：分位数回归方程的检验</h2>
 <ul>
 <li><p>检验eq1方程系数是否相等(检验q25, q50, q75)</p></li>
 <li><p>eq1.qrslope</p></li>
@@ -518,8 +524,21 @@ Q\left(\beta_{0.5}\right)=\sum_i^n\left|y_i-x_i^{\prime} \beta_{0.5}\right|
 <li><p>eq1.qrsymm(n=10)</p></li>
 </ul>
 </section>
-<section id="eviews优势和使用经验" class="slide level2">
-<h2>7 EViews优势和使用经验</h2>
+<section id="eviews代码分位数回归方程可视化" class="slide level2">
+<h2>6 EViews代码：分位数回归方程可视化</h2>
+<ul>
+<li><p>绘制4个分位数方程的所有系数的表格</p></li>
+<li><p>eq1.qrprocess(n=4)</p></li>
+<li><p>绘制10个分位数方程的第2个系数的表格</p></li>
+<li><p>eq1.qrprocess <span class="citation" data-cites="coefs">@coefs</span> c(2)</p></li>
+<li><p>绘制4个分位数方程的所有系数的图像</p></li>
+<li><p>eq1.qrprocess(n=4, graph)</p></li>
+<li><p>绘制10个分位数方程的第2个系数、第3个系数的图像</p></li>
+<li><p>eq1.qrprocess(graph) <span class="citation" data-cites="coefs">@coefs</span> c(2) c(3)</p></li>
+</ul>
+</section>
+<section id="eviews优势" class="slide level2">
+<h2>7 EViews优势</h2>
 <ul>
 <li><p>操作灵活：图形窗口操作/命令行操作</p></li>
 <li><p>经济计量分析工具的集成</p></li>

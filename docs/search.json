@@ -67,7 +67,7 @@
     "href": "quantile.html#分位数回归模型模型设定",
     "title": "EViews 分位数回归模型",
     "section": "1 分位数回归模型：模型设定",
-    "text": "1 分位数回归模型：模型设定\n\n解释变量对被解释变量的某个分位数的影响效应.\n\n\\[\nQ_q\\left(y_i \\mid x_i\\right)=x_i^{\\prime} \\beta_q\n\\]"
+    "text": "1 分位数回归模型：模型设定\n\n分位数回归将被解释变量的条件分位数表示为解释变量的线性函数。\n\n\\[\nQ_q\\left(y_i \\mid x_i\\right)=x_i^{\\prime} \\beta_q\n\\]"
   },
   {
     "objectID": "quantile.html#分位数回归模型估计思想",
@@ -88,7 +88,7 @@
     "href": "quantile.html#分位数回归模型系数含义",
     "title": "EViews 分位数回归模型",
     "section": "1 分位数回归模型：系数含义",
-    "text": "1 分位数回归模型：系数含义\n\\[\n\\frac{\\partial Q_q(y \\mid x)}{\\partial x_j}=\\beta_{q j}\n\\]\n\\(β_{qj}\\)的含义是：当其他变量保持不变，\\(x_j\\)变化一单位，被解释变量的第\\(100*q\\)个百分位数将变化\\(β_{qj}\\)单位。"
+    "text": "1 分位数回归模型：系数含义\n\\[\n\\frac{\\partial Q_q(y \\mid x)}{\\partial x_j}=\\beta_{q j}\n\\]\n\\(β_{qj}\\)的含义是：当其他变量保持不变，\\(x_j\\)变化一单位，平均而言，被解释变量的第\\(100*q\\)个百分位数将变化\\(β_{qj}\\)单位。"
   },
   {
     "objectID": "quantile.html#分位数回归模型优势",
@@ -98,18 +98,32 @@
     "text": "1 分位数回归模型：优势\n\n克服了最小二乘回归模型中潜在的异方差问题\n不受样本中异常值的影响，得到稳健的估计结果\n能够更加细致地描述变量之间的关系。"
   },
   {
+    "objectID": "quantile.html#分位数回归模型优势-1",
+    "href": "quantile.html#分位数回归模型优势-1",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：优势",
+    "text": "1 分位数回归模型：优势"
+  },
+  {
+    "objectID": "quantile.html#分位数回归模型优势-2",
+    "href": "quantile.html#分位数回归模型优势-2",
+    "title": "EViews 分位数回归模型",
+    "section": "1 分位数回归模型：优势",
+    "text": "1 分位数回归模型：优势"
+  },
+  {
     "objectID": "quantile.html#分位数回归模型适用场景",
     "href": "quantile.html#分位数回归模型适用场景",
     "title": "EViews 分位数回归模型",
     "section": "1 分位数回归模型：适用场景",
-    "text": "1 分位数回归模型：适用场景\n\n容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。\n若样本容量太小，给定的解释变量和被解释变量的变异程度不够，是无法探究其分位数与解释变量的关系的。"
+    "text": "1 分位数回归模型：适用场景\n\n容量很大的样本数据，才适宜探究被解释变量的条件分布与解释变量的关系特征。\n若样本容量太小，给定的解释变量和被解释变量的变异程度不够，无法探究其分位数与解释变量的关系。"
   },
   {
     "objectID": "quantile.html#案例-数据",
     "href": "quantile.html#案例-数据",
     "title": "EViews 分位数回归模型",
     "section": "2 案例: 数据",
-    "text": "2 案例: 数据\n\n数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）\n样本数据：从MEPS数据库中提取了2955个人的数据\n\n本例数据文件health.wf1下载"
+    "text": "2 案例: 数据\n\n数据来源：美国医疗费用支出跟踪调查（Medical Expenditure Panel Survey，简称MEPS）\n样本数据：从MEPS数据库中提取2955个人的数据\n\n本例数据文件health.wf1下载"
   },
   {
     "objectID": "quantile.html#案例-研究目标",
@@ -147,25 +161,25 @@
     "text": "3 分位数回归模型的估计：与OLS对比"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的估计与ols对比-1",
-    "href": "quantile.html#分位数回归模型的估计与ols对比-1",
+    "objectID": "quantile.html#分位数回归模型的估计",
+    "href": "quantile.html#分位数回归模型的估计",
     "title": "EViews 分位数回归模型",
-    "section": "3 分位数回归模型的估计：与OLS对比",
-    "text": "3 分位数回归模型的估计：与OLS对比"
+    "section": "3 分位数回归模型的估计",
+    "text": "3 分位数回归模型的估计"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的诊断-斜率是否相等检验",
-    "href": "quantile.html#分位数回归模型的诊断-斜率是否相等检验",
+    "objectID": "quantile.html#分位数回归模型的诊断-斜率相等检验",
+    "href": "quantile.html#分位数回归模型的诊断-斜率相等检验",
     "title": "EViews 分位数回归模型",
-    "section": "4 分位数回归模型的诊断: 斜率是否相等检验",
-    "text": "4 分位数回归模型的诊断: 斜率是否相等检验\n检验目的：解释变量对被解释变量的条件分布的影响效应是否存在差异？"
+    "section": "4 分位数回归模型的诊断: 斜率相等检验",
+    "text": "4 分位数回归模型的诊断: 斜率相等检验\n检验目的：解释变量对被解释变量的条件分布的影响效应是否存在差异？"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的诊断-斜率是否相等检验结果解释",
-    "href": "quantile.html#分位数回归模型的诊断-斜率是否相等检验结果解释",
+    "objectID": "quantile.html#分位数回归模型的诊断-斜率相等检验-1",
+    "href": "quantile.html#分位数回归模型的诊断-斜率相等检验-1",
     "title": "EViews 分位数回归模型",
-    "section": "4 分位数回归模型的诊断: 斜率是否相等检验结果解释",
-    "text": "4 分位数回归模型的诊断: 斜率是否相等检验结果解释"
+    "section": "4 分位数回归模型的诊断: 斜率相等检验",
+    "text": "4 分位数回归模型的诊断: 斜率相等检验"
   },
   {
     "objectID": "quantile.html#分位数回归模型的诊断-对称性检验",
@@ -175,11 +189,11 @@
     "text": "4 分位数回归模型的诊断: 对称性检验"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的诊断-对称性检验结果解释",
-    "href": "quantile.html#分位数回归模型的诊断-对称性检验结果解释",
+    "objectID": "quantile.html#分位数回归模型的诊断-对称性检验-1",
+    "href": "quantile.html#分位数回归模型的诊断-对称性检验-1",
     "title": "EViews 分位数回归模型",
-    "section": "4 分位数回归模型的诊断: 对称性检验结果解释",
-    "text": "4 分位数回归模型的诊断: 对称性检验结果解释"
+    "section": "4 分位数回归模型的诊断: 对称性检验",
+    "text": "4 分位数回归模型的诊断: 对称性检验"
   },
   {
     "objectID": "quantile.html#分位数回归模型的可视化过程系数",
@@ -189,60 +203,67 @@
     "text": "5 分位数回归模型的可视化：过程系数"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
-    "href": "quantile.html#分位数回归模型的可视化过程系数操作步骤",
+    "objectID": "quantile.html#分位数回归模型的可视化系数表格",
+    "href": "quantile.html#分位数回归模型的可视化系数表格",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：过程系数操作步骤",
-    "text": "5 分位数回归模型的可视化：过程系数操作步骤"
+    "section": "5 分位数回归模型的可视化：系数表格",
+    "text": "5 分位数回归模型的可视化：系数表格"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数表格输出",
-    "href": "quantile.html#分位数回归模型的可视化过程系数表格输出",
+    "objectID": "quantile.html#分位数回归模型的可视化系数表格-1",
+    "href": "quantile.html#分位数回归模型的可视化系数表格-1",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：过程系数表格输出",
-    "text": "5 分位数回归模型的可视化：过程系数表格输出"
+    "section": "5 分位数回归模型的可视化：系数表格",
+    "text": "5 分位数回归模型的可视化：系数表格"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数-1",
-    "href": "quantile.html#分位数回归模型的可视化过程系数-1",
+    "objectID": "quantile.html#分位数回归模型的可视化系数表格-2",
+    "href": "quantile.html#分位数回归模型的可视化系数表格-2",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：过程系数",
-    "text": "5 分位数回归模型的可视化：过程系数"
+    "section": "5 分位数回归模型的可视化：系数表格",
+    "text": "5 分位数回归模型的可视化：系数表格"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化过程系数图像",
-    "href": "quantile.html#分位数回归模型的可视化过程系数图像",
+    "objectID": "quantile.html#分位数回归模型的可视化系数图像",
+    "href": "quantile.html#分位数回归模型的可视化系数图像",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：过程系数图像",
-    "text": "5 分位数回归模型的可视化：过程系数图像"
+    "section": "5 分位数回归模型的可视化：系数图像",
+    "text": "5 分位数回归模型的可视化：系数图像"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的可视化totchr过程系数图像",
-    "href": "quantile.html#分位数回归模型的可视化totchr过程系数图像",
+    "objectID": "quantile.html#分位数回归模型的可视化系数图像-1",
+    "href": "quantile.html#分位数回归模型的可视化系数图像-1",
     "title": "EViews 分位数回归模型",
-    "section": "5 分位数回归模型的可视化：totchr过程系数图像",
-    "text": "5 分位数回归模型的可视化：totchr过程系数图像"
+    "section": "5 分位数回归模型的可视化：系数图像",
+    "text": "5 分位数回归模型的可视化：系数图像"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的eviews代码",
-    "href": "quantile.html#分位数回归模型的eviews代码",
+    "objectID": "quantile.html#eviews代码分位数回归方程的估计",
+    "href": "quantile.html#eviews代码分位数回归方程的估计",
     "title": "EViews 分位数回归模型",
-    "section": "6 分位数回归模型的EViews代码",
-    "text": "6 分位数回归模型的EViews代码\n\n估计中位数数方程eq1\nequation eq1.qreg totexp c age totchr suppins female white\n估计第25个百分位数方程eq1\nequation eq1.qreg(quant=0.25) totexp c age totchr suppins female white\neq1_25th.qrprocess(n=20, graph) @coefs c(2)\nequation eq1.qreg totexp c age totchr suppins female white"
+    "section": "6 EViews代码：分位数回归方程的估计",
+    "text": "6 EViews代码：分位数回归方程的估计\n\n估计中位数数方程eq1\nequation eq1.qreg totexp c age totchr suppins female white\n估计第25个百分位数方程eq1\nequation eq1.qreg(quant=0.25) totexp c age totchr suppins female white"
   },
   {
-    "objectID": "quantile.html#分位数回归模型的eviews代码-1",
-    "href": "quantile.html#分位数回归模型的eviews代码-1",
+    "objectID": "quantile.html#eviews代码分位数回归方程的检验",
+    "href": "quantile.html#eviews代码分位数回归方程的检验",
     "title": "EViews 分位数回归模型",
-    "section": "6 分位数回归模型的EViews代码",
-    "text": "6 分位数回归模型的EViews代码\n\n检验eq1方程系数是否相等(检验q25, q50, q75)\neq1.qrslope\neq1方程的系数是否相等检验(检验10个分位数方程)\neq1.qrslope(n=10)\neq1方程的系数的对称性检验(检验q25和q75的对称性)\neq1.qrsymn\neq1方程的系数的对称性检验(检验q10 & q90, q20 & q80, q25& q75, q30 & q70, q40 & q60,的对称性)\neq1.qrsymm(n=10)"
+    "section": "6 EViews代码：分位数回归方程的检验",
+    "text": "6 EViews代码：分位数回归方程的检验\n\n检验eq1方程系数是否相等(检验q25, q50, q75)\neq1.qrslope\neq1方程的系数是否相等检验(检验10个分位数方程)\neq1.qrslope(n=10)\neq1方程的系数的对称性检验(检验q25和q75的对称性)\neq1.qrsymn\neq1方程的系数的对称性检验(检验q10 & q90, q20 & q80, q25& q75, q30 & q70, q40 & q60,的对称性)\neq1.qrsymm(n=10)"
   },
   {
-    "objectID": "quantile.html#eviews优势和使用经验",
-    "href": "quantile.html#eviews优势和使用经验",
+    "objectID": "quantile.html#eviews代码分位数回归方程可视化",
+    "href": "quantile.html#eviews代码分位数回归方程可视化",
     "title": "EViews 分位数回归模型",
-    "section": "7 EViews优势和使用经验",
-    "text": "7 EViews优势和使用经验\n\n操作灵活：图形窗口操作/命令行操作\n经济计量分析工具的集成\n功能丰富的插件\n易学易用、不易遗忘"
+    "section": "6 EViews代码：分位数回归方程可视化",
+    "text": "6 EViews代码：分位数回归方程可视化\n\n绘制4个分位数方程的所有系数的表格\neq1.qrprocess(n=4)\n绘制10个分位数方程的第2个系数的表格\neq1.qrprocess @coefs c(2)\n绘制4个分位数方程的所有系数的图像\neq1.qrprocess(n=4, graph)\n绘制10个分位数方程的第2个系数、第3个系数的图像\neq1.qrprocess(graph) @coefs c(2) c(3)"
+  },
+  {
+    "objectID": "quantile.html#eviews优势",
+    "href": "quantile.html#eviews优势",
+    "title": "EViews 分位数回归模型",
+    "section": "7 EViews优势",
+    "text": "7 EViews优势\n\n操作灵活：图形窗口操作/命令行操作\n经济计量分析工具的集成\n功能丰富的插件\n易学易用、不易遗忘"
   },
   {
     "objectID": "quantile.html#eviews使用经验",

@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "EViews实战与数据分析"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - 第1篇.qmd
+      - 第2篇.qmd
+      - 第3篇.qmd
+      - 第4篇.qmd
+      - 第5篇.qmd
+    tools:
+      - icon: envelope
+        href: lizongzhang9@qq.com
+  page-footer:
+    right: "Data illuminates insights."
+    left: "&copy; Copyright 2024, Li Zongzhang"
+format:
+  html:
+    theme: yeti
+    fontcolor: "#044875"
+    toc: true
+editor: source
+

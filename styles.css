@@ -1,0 +1,40 @@
+.reveal {
+    color: #044875; /* Change #044875 to the color you want */
+    font-family: "STKaiti", 'Times New Roman', sans-serif; /* Change 'Arial' to the font you want */
+}
+
+/* 'Arial', sans-serif; */
+
+.reveal h2 {
+    color: #044875; /* Change #044875 to the color you want */
+    font-family: "STKaiti", 'Times New Roman', sans-serif;
+}
+
+/* Target the <h1> element specifically on the first slide */
+.reveal .slides > section:first-child h1 {
+    color: #044875; /* Change to your desired color */
+    font-family: "STKaiti", 'Times New Roman', sans-serif;
+}
+
+
+body::before {
+  content: "北京友万信息科技有限公司";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 5em;
+  color: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
